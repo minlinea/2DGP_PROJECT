@@ -95,7 +95,11 @@ class Air:
             character.xspeed += RUN_SPEED_PPS
             character.direction = 0
         elif event == INSTANT_DOWN:
-            character.y_axiscount = 121
+            character.y_axiscount = 81
+            if(character.xspeed > 0):
+                character.direction = 1
+            else:
+                character.direction = 0
         pass
 
     @staticmethod
@@ -134,7 +138,6 @@ class Hold:
     def enter(character, event):
         if event == WAIT:
             pass
-        character.xspeed =0
         pass
 
     @staticmethod
