@@ -70,6 +70,9 @@ def update():
                 if(tiles[i].type != 0):
                     character.crash_tile(tiles[i].type)
 
+    if(character.opacify == 0):
+        game_framework.change_state(title_state)
+
     if(character.xpos >= 750):
         load_stage()
         character.xpos = 700
