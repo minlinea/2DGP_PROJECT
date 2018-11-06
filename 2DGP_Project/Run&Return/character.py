@@ -22,7 +22,7 @@ FRAMES_PER_ACTION = 4
 character = None
 
 # Character Event
-RIGHT_DOWN, RIGHT_UP, LEFT_DOWN, LEFT_UP, JUMP, INSTANT_DOWN, WAIT, LANDING = range(8)
+RIGHT_DOWN, RIGHT_UP, LEFT_DOWN, LEFT_UP, JUMP, INSTANT_DOWN, WAIT, LANDING, DIE = range(9)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -162,6 +162,8 @@ class Hold:
 
 class Death:
     def enter(character, event):
+        character.xspeed = 0
+        character.yspeed = 0
         pass
 
     @staticmethod
@@ -170,21 +172,27 @@ class Death:
 
     @staticmethod
     def do(character):
-        character.contact()
+        if (character.opacify > 0):
+            character.opacify -= game_framework.frame_time / 3.0
+        else:
+            character.opacify = 0
         pass
 
     @staticmethod
     def draw(character):
-        character.image.clip_draw(int(character.frame) * 100, character.direction * 100, 40, 80, character.xpos, character.ypos)
+        character.image.opacify(character.opacify)
+        character.image.clip_draw(int(character.frame * 40), character.direction * 0, 40, 80, character.xpos,
+                                  character.ypos)
         pass
 
 
 
 
 next_state_table = {
-    Ground: {RIGHT_DOWN: Ground, LEFT_UP: Ground, RIGHT_UP: Ground, LEFT_DOWN: Ground, JUMP: Air, INSTANT_DOWN: Ground, LANDING : Ground, WAIT : Hold},
-    Air: {RIGHT_DOWN: Air, RIGHT_UP: Air, LEFT_UP: Air, LEFT_DOWN: Air, JUMP: Air, INSTANT_DOWN: Air, LANDING : Ground},
-    Hold: {LEFT_DOWN: Ground, RIGHT_DOWN: Ground, LEFT_UP: Hold, RIGHT_UP: Hold, JUMP: Air, INSTANT_DOWN: Ground, WAIT : Hold}
+    Ground: {RIGHT_DOWN: Ground, LEFT_UP: Ground, RIGHT_UP: Ground, LEFT_DOWN: Ground, JUMP: Air, INSTANT_DOWN: Ground, LANDING : Ground, WAIT : Hold, DIE : Death},
+    Air: {RIGHT_DOWN: Air, RIGHT_UP: Air, LEFT_UP: Air, LEFT_DOWN: Air, JUMP: Air, INSTANT_DOWN: Air, LANDING : Ground, DIE : Death},
+    Hold: {LEFT_DOWN: Ground, RIGHT_DOWN: Ground, LEFT_UP: Hold, RIGHT_UP: Hold, JUMP: Air, INSTANT_DOWN: Ground, WAIT : Hold, DIE : Death},
+    Death: {LEFT_DOWN: Death, RIGHT_DOWN: Death, LEFT_UP: Death, RIGHT_UP: Death, JUMP: Death, INSTANT_DOWN: Death, WAIT : Death, DIE : Death}
 }
 
 
@@ -198,6 +206,7 @@ class Character:
         self.direction = 1
         self.xspeed, self.yspeed = 0, 0
         self.y_axiscount = 0
+        self.opacify = 1.0
         self.event_que = []
         self.cur_state = Ground
         self.cur_state.enter(self, None)
@@ -221,6 +230,8 @@ class Character:
                 self.xpos += 5
                 self.xspeed = 0
             self.add_event(WAIT)
+        elif (type == 2):
+            self.add_event(DIE)
 
     def draw(self):
         self.cur_state.draw(self)
