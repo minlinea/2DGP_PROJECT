@@ -46,10 +46,12 @@ class Ground:
             character.xspeed -=  RUN_SPEED_PPS
             character.direction = 0
         elif event == RIGHT_UP:
-            character.xspeed -= RUN_SPEED_PPS
+            if (character.xspeed != 0):
+                character.xspeed -= RUN_SPEED_PPS
             character.direction = 1
         elif event == LEFT_UP:
-            character.xspeed += RUN_SPEED_PPS
+            if (character.xspeed != 0):
+                character.xspeed += RUN_SPEED_PPS
             character.direction = 0
         elif event == LANDING:
             character.yspeed = 0
@@ -89,10 +91,12 @@ class Air:
             character.xspeed -= RUN_SPEED_PPS
             character.direction = 0
         elif event == RIGHT_UP:
-            character.xspeed -= RUN_SPEED_PPS
+            if (character.xspeed != 0):
+                character.xspeed -= RUN_SPEED_PPS
             character.direction = 1
         elif event == LEFT_UP:
-            character.xspeed += RUN_SPEED_PPS
+            if (character.xspeed != 0):
+                character.xspeed += RUN_SPEED_PPS
             character.direction = 0
         elif event == INSTANT_DOWN:
             character.y_axiscount = 81
@@ -180,7 +184,7 @@ class Death:
 next_state_table = {
     Ground: {RIGHT_DOWN: Ground, LEFT_UP: Ground, RIGHT_UP: Ground, LEFT_DOWN: Ground, JUMP: Air, INSTANT_DOWN: Ground, LANDING : Ground, WAIT : Hold},
     Air: {RIGHT_DOWN: Air, RIGHT_UP: Air, LEFT_UP: Air, LEFT_DOWN: Air, JUMP: Air, INSTANT_DOWN: Air, LANDING : Ground},
-    Hold: {LEFT_DOWN: Ground, RIGHT_DOWN: Ground, LEFT_UP: Ground, RIGHT_UP: Ground, JUMP: Air, INSTANT_DOWN: Ground}
+    Hold: {LEFT_DOWN: Ground, RIGHT_DOWN: Ground, LEFT_UP: Hold, RIGHT_UP: Hold, JUMP: Air, INSTANT_DOWN: Ground, WAIT : Hold}
 }
 
 
@@ -208,7 +212,15 @@ class Character:
             self.cur_state.enter(self, event)
 
 
-
+    def crash_tile(self, type):
+        if (type == 1):
+            if(self.xspeed > 0):
+                self.xpos -= 5
+                self.xspeed = 0
+            elif (self.xspeed < 0):
+                self.xpos += 5
+                self.xspeed = 0
+            self.add_event(WAIT)
 
     def draw(self):
         self.cur_state.draw(self)

@@ -67,8 +67,8 @@ def update():
     for i in range(15):
         for tiles in tile:
             if (collide(character, tiles[i])):
-                if(tiles[i].type == 1):
-                    tiles[i].type=0
+                if(tiles[i].type != 0):
+                    character.crash_tile(tiles[i].type)
 
     if(character.xpos >= 750):
         load_stage()
