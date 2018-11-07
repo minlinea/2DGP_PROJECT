@@ -99,7 +99,7 @@ class Air:
                 character.xspeed += RUN_SPEED_PPS
             character.direction = 0
         elif event == INSTANT_DOWN:
-            character.y_axiscount = 81
+            character.y_axiscount = 176
             if(character.xspeed > 0):
                 character.direction = 1
             else:
@@ -119,8 +119,9 @@ class Air:
         else:
             character.yspeed = 0
             character.y_axiscount = (character.y_axiscount + 1) % 183
+
         if(character.y_axiscount == 0):
-            character.add_event(LANDING)
+            character.y_axiscount = 176
 
         character.ypos += character.yspeed #* game_framework.frame_time
 
