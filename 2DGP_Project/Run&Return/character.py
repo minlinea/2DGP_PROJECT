@@ -17,7 +17,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 4
-
+character_size = 39
 
 character = None
 
@@ -73,7 +73,7 @@ class Ground:
 
     @staticmethod
     def draw(character):
-        character.image.clip_draw(int(character.frame * 40), character.direction * 0, 40, 80, character.xpos,
+        character.image.clip_draw(int(character.frame * 40), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
                                   character.ypos)
         pass
 
@@ -131,7 +131,7 @@ class Air:
 
     @staticmethod
     def draw(character):
-        character.image.clip_draw(int(character.frame * 40), character.direction * 0, 40, 80, character.xpos,
+        character.image.clip_draw(int(character.frame * 40), character.direction * 0,character_size, character_size * 2 - 1, character.xpos,
                                   character.ypos)
         pass
 
@@ -156,7 +156,7 @@ class Hold:
 
     @staticmethod
     def draw(character):
-        character.image.clip_draw(int(character.frame * 40), character.direction * 0, 40, 80, character.xpos,
+        character.image.clip_draw(int(character.frame * 40), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
                                   character.ypos)
         pass
 
@@ -181,7 +181,7 @@ class Death:
     @staticmethod
     def draw(character):
         character.image.opacify(character.opacify)
-        character.image.clip_draw(int(character.frame * 40), character.direction * 0, 40, 80, character.xpos,
+        character.image.clip_draw(int(character.frame * 40), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
                                   character.ypos)
         pass
 
@@ -221,21 +221,19 @@ class Character:
             self.cur_state.enter(self, event)
 
 
-    def crash_tile(self, type):
-        if (type == 1):
+    def crash_tile(self, tile_type):
+        if (tile_type == 1):
             if(self.xspeed > 0):
                 self.xpos -= 5
-                self.xspeed = 0
             elif (self.xspeed < 0):
                 self.xpos += 5
                 self.xspeed = 0
-            self.add_event(WAIT)
-        elif (type == 2):
+        elif (tile_type == 2):
             self.add_event(DIE)
 
     def draw(self):
         self.cur_state.draw(self)
-        #draw_rectangle(*self.get_bb())
+        draw_rectangle(*self.get_bb())
 
 
     def move_instant_down(self):

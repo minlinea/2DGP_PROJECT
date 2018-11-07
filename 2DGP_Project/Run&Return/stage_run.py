@@ -113,5 +113,3 @@ def collide(a, b):
     if top_a < bottom_b: return False
     if bottom_a > top_b: return False
     return True
-
-
