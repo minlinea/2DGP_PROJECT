@@ -228,6 +228,10 @@ class Character:
             elif (self.xspeed < 0):
                 self.xpos += 5
                 self.xspeed = 0
+            elif (self.y_axiscount !=0):
+                self.y_axiscount = 0
+                self.ypos = (self.ypos // 40 + 1 ) * 40
+                self.add_event(LANDING)
         elif (tile_type == 2):
             self.add_event(DIE)
 
