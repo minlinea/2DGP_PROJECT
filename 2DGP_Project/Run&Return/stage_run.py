@@ -13,15 +13,15 @@ name = "StageRun"
 
 character =None
 tile =None
-stage_count = 0
+now_stage_num = 0
 
 
 
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
-    global tile, stage_count
+    global tile, now_stage_num
     file = open("save_stage.txt", 'r')
-    for load_temp in range(0, 15 * stage_count, 1):
+    for load_temp in range(0, 15 * now_stage_num, 1):
         line = file.readline()
     for j in range(0, 15, 1):
         line = file.readline()
@@ -30,14 +30,14 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 
     line = file.readline()
     if line:
-        stage_count += 1
+        now_stage_num += 1
     file.close()
 
 
 
 def enter():
-    global character, tile, stage_count
-    stage_count = 0
+    global character, tile, now_stage_num
+    now_stage_num = 0
     character = Character()
     tile = [([(Tile(j,i,'run')) for i in range(20)]) for j in range(15)]
     for j in range(0, 15, 1):
@@ -73,7 +73,7 @@ def update():
     if(character.opacify == 0):
         game_framework.change_state(title_state)
 
-    if(character.xpos >= 750):
+    if(character.xpos >= 800 - 50):
         load_stage()
         character.xpos = 700
 

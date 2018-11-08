@@ -18,7 +18,7 @@ TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 4
 character_size = 39
-
+image_size = 40
 character = None
 
 # Character Event
@@ -33,6 +33,8 @@ key_event_table = {
     (SDL_KEYDOWN, SDLK_DOWN): INSTANT_DOWN,
 }
 
+left, right = range(2)
+direction = {left : 0, right : 1}
 
 #state
 
@@ -41,18 +43,18 @@ class Ground:
     def enter(character, event):
         if event == RIGHT_DOWN:
             character.xspeed += RUN_SPEED_PPS
-            character.direction = 1
+            character.direction =right
         elif event == LEFT_DOWN:
             character.xspeed -=  RUN_SPEED_PPS
-            character.direction = 0
+            character.direction = left
         elif event == RIGHT_UP:
             if (character.xspeed != 0):
                 character.xspeed -= RUN_SPEED_PPS
-            character.direction = 1
+            character.direction = right
         elif event == LEFT_UP:
             if (character.xspeed != 0):
                 character.xspeed += RUN_SPEED_PPS
-            character.direction = 0
+            character.direction = left
         elif event == LANDING:
             character.yspeed = 0
             character.y_axiscount = 0
@@ -67,13 +69,13 @@ class Ground:
     def do(character):
         character.frame = (character.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
         character.xpos += character.xspeed * game_framework.frame_time
-        character.xpos = clamp(25, character.xpos, 800 - 20)
+        character.xpos = clamp(0 + 20, character.xpos, 800 - 20)
         if(character.xspeed ==0):
             character.add_event(WAIT)
 
     @staticmethod
     def draw(character):
-        character.image.clip_draw(int(character.frame * 40), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
+        character.image.clip_draw(int(character.frame * image_size), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
                                   character.ypos)
         pass
 
@@ -126,13 +128,13 @@ class Air:
         character.ypos += character.yspeed #* game_framework.frame_time
 
         character.xpos += character.xspeed * game_framework.frame_time
-        character.xpos = clamp(25, character.xpos, 800 - 20)
-        character.ypos = clamp(0, character.ypos, 600 - 40)
+        character.xpos = clamp(0 + 20, character.xpos, 800 - 20)
+        character.ypos = clamp(0 + 40, character.ypos, 600 - 40)
         pass
 
     @staticmethod
     def draw(character):
-        character.image.clip_draw(int(character.frame * 40), character.direction * 0,character_size, character_size * 2 - 1, character.xpos,
+        character.image.clip_draw(int(character.frame * image_size), character.direction * 0,character_size, character_size * 2 - 1, character.xpos,
                                   character.ypos)
         pass
 
@@ -157,7 +159,7 @@ class Hold:
 
     @staticmethod
     def draw(character):
-        character.image.clip_draw(int(character.frame * 40), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
+        character.image.clip_draw(int(character.frame * image_size), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
                                   character.ypos)
         pass
 
@@ -182,7 +184,7 @@ class Death:
     @staticmethod
     def draw(character):
         character.image.opacify(character.opacify)
-        character.image.clip_draw(int(character.frame * 40), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
+        character.image.clip_draw(int(character.frame * image_size), character.direction * 0, character_size, character_size * 2 - 1, character.xpos,
                                   character.ypos)
         pass
 
@@ -239,10 +241,6 @@ class Character:
     def draw(self):
         self.cur_state.draw(self)
         draw_rectangle(*self.get_bb())
-
-
-    def move_instant_down(self):
-        self.y_axiscount = 234
 
 
     def get_bb(self):
