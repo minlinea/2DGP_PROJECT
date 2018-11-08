@@ -17,9 +17,18 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 4
+
+
 character_size = 39
 image_size = 40
+
+window_top, window_right = 600, 800
+
+
 character = None
+
+
+
 
 # Character Event
 RIGHT_DOWN, RIGHT_UP, LEFT_DOWN, LEFT_UP, JUMP, INSTANT_DOWN, WAIT, LANDING, DIE = range(9)
@@ -69,7 +78,7 @@ class Ground:
     def do(character):
         character.frame = (character.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
         character.xpos += character.xspeed * game_framework.frame_time
-        character.xpos = clamp(0 + 20, character.xpos, 800 - 20)
+        character.xpos = clamp(0 + character_size//2, character.xpos, window_right - character_size//2)
         if(character.xspeed ==0):
             character.add_event(WAIT)
 
@@ -91,7 +100,7 @@ class Air:
             character.direction = 1
         elif event == LEFT_DOWN:
             character.xspeed -= RUN_SPEED_PPS
-            character.direction = 0
+            character.direction = left
         elif event == RIGHT_UP:
             if (character.xspeed != 0):
                 character.xspeed -= RUN_SPEED_PPS
@@ -99,13 +108,13 @@ class Air:
         elif event == LEFT_UP:
             if (character.xspeed != 0):
                 character.xspeed += RUN_SPEED_PPS
-            character.direction = 0
+            character.direction = left
         elif event == INSTANT_DOWN:
             character.y_axiscount = 176
             if(character.xspeed > 0):
-                character.direction = 1
+                character.direction = right
             else:
-                character.direction = 0
+                character.direction = left
         pass
 
     @staticmethod
@@ -128,8 +137,8 @@ class Air:
         character.ypos += character.yspeed #* game_framework.frame_time
 
         character.xpos += character.xspeed * game_framework.frame_time
-        character.xpos = clamp(0 + 20, character.xpos, 800 - 20)
-        character.ypos = clamp(0 + 40, character.ypos, 600 - 40)
+        character.xpos = clamp(0 + character_size//2, character.xpos, window_right - character_size//2)
+        character.ypos = clamp(0 + character_size, character.ypos, window_top - character_size)
         pass
 
     @staticmethod
@@ -206,7 +215,7 @@ class Character:
         self.xpos, self.ypos = 150, 280
         self.frame = 0
         self.image = load_image('resource\\character\\animation_sheet_demo.png')
-        self.direction = 1
+        self.direction = right
         self.xspeed, self.yspeed = 0, 0
         self.y_axiscount = 0
         self.opacify = 1.0
@@ -244,7 +253,7 @@ class Character:
 
 
     def get_bb(self):
-        return self.xpos - 20, self.ypos - 40, self.xpos + 20, self.ypos+40
+        return self.xpos - character_size//2, self.ypos - character_size, self.xpos + character_size//2, self.ypos+character_size
 
     def add_event(self, event):
         self.event_que.insert(0, event)

@@ -14,18 +14,18 @@ name = "StageRun"
 character =None
 tile =None
 now_stage_num = 0
-
-
+max_vertical_num, max_horizontal_num = 15, 20
+window_top, window_right = 600, 800
 
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
     file = open("save_stage.txt", 'r')
-    for load_temp in range(0, 15 * now_stage_num, 1):
+    for load_temp in range(0, max_vertical_num * now_stage_num, 1):
         line = file.readline()
-    for j in range(0, 15, 1):
+    for j in range(0, max_vertical_num, 1):
         line = file.readline()
-        for i in range(0, 20, 1):
+        for i in range(0, max_horizontal_num, 1):
             tile[j][i].type = int(line[i:i + 1])
 
     line = file.readline()
@@ -39,11 +39,11 @@ def enter():
     global character, tile, now_stage_num
     now_stage_num = 0
     character = Character()
-    tile = [([(Tile(j,i,'run')) for i in range(20)]) for j in range(15)]
-    for j in range(0, 15, 1):
+    tile = [([(Tile(j,i,'run')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
+    for j in range(0, max_vertical_num, 1):
             game_world.add_objects(tile[j], 0)
     load_stage()
-    game_world.add_object(character, 0)
+    game_world.add_object(character, 1)
 
 
 def exit():
@@ -64,7 +64,7 @@ def update():
 
     for game_object in game_world.all_objects():
         game_object.update()
-    for i in range(15):
+    for i in range(max_vertical_num):
         for tiles in tile:
             if (collide(character, tiles[i])):
                 if(tiles[i].type != 0):
@@ -73,10 +73,9 @@ def update():
     if(character.opacify == 0):
         game_framework.change_state(title_state)
 
-    if(character.xpos >= 800 - 50):
+    if(character.xpos >= window_right - 50):
         load_stage()
         character.xpos = 700
-
 
 def draw():
     clear_canvas()
