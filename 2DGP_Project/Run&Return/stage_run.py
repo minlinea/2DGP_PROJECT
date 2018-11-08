@@ -47,8 +47,8 @@ def enter():
 
 
 def exit():
-    game_world.remove_object(0)
     game_world.remove_object(1)
+    game_world.remove_object(0)
 
 
 
@@ -64,7 +64,7 @@ def update():
 
     for game_object in game_world.all_objects():
         game_object.update()
-    for i in range(max_vertical_num):
+    for i in range(max_horizontal_num):
         for tiles in tile:
             if (collide(stickman, tiles[i])):
                 if(tiles[i].type != 0):

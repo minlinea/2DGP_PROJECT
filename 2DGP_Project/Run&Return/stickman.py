@@ -237,10 +237,14 @@ class Stickman:
         if (tile_type == 1):
             if(self.xspeed > 0):
                 self.xpos -= 5
+                self.xspeed = 0
             elif (self.xspeed < 0):
                 self.xpos += 5
                 self.xspeed = 0
-            elif (self.y_axiscount !=0):
+            elif (self.y_axiscount < 93):
+                self.y_axiscount = 93
+                self.ypos = (self.ypos // 40) * 40
+            elif (self.y_axiscount >= 93):
                 self.y_axiscount = 0
                 self.ypos = (self.ypos // 40 + 1 ) * 40
                 self.add_event(LANDING)

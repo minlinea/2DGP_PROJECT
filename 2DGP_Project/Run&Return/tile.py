@@ -31,7 +31,7 @@ class Tile:
 
     def draw(self):
         self.image.clip_draw(5 + (42 * (self.type % 2)), 4 + ((42 * 4) - (42 * ((self.type + 2) // 2))),
-                            self.size, self.size, 20 + self.x * self.size, 20 + self.y * self.size)
+                            self.size - 1, self.size - 1, 20 + self.x * self.size, 20 + self.y * self.size)
         draw_rectangle(*self.get_bb())
 
     def get_bb(self):
