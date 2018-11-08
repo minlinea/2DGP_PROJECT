@@ -44,6 +44,9 @@ key_event_table = {
 
 left, right = range(2)
 direction = {left : 0, right : 1}
+empty_space, block, thorn = range(3)
+tile_type = {empty_space : 0, block : 1, thorn : 2}
+
 
 #state
 
@@ -234,21 +237,23 @@ class Stickman:
 
 
     def crash_tile(self, tile_type):
-        if (tile_type == 1):
+        if (tile_type == block):
             if(self.xspeed > 0):
                 self.xpos -= 5
                 self.xspeed = 0
             elif (self.xspeed < 0):
                 self.xpos += 5
                 self.xspeed = 0
-            elif (self.y_axiscount < 93):
-                self.y_axiscount = 93
-                self.ypos = (self.ypos // 40) * 40
             elif (self.y_axiscount >= 93):
                 self.y_axiscount = 0
                 self.ypos = (self.ypos // 40 + 1 ) * 40
                 self.add_event(LANDING)
-        elif (tile_type == 2):
+            elif (self.y_axiscount < 93):
+                self.y_axiscount = 93
+                self.ypos = (self.ypos // 40) * 40
+        elif (tile_type == empty_space):
+            pass
+        elif (tile_type == thorn):
             self.add_event(DIE)
 
     def draw(self):
