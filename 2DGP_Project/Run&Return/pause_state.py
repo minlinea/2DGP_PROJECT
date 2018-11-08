@@ -3,10 +3,15 @@ import stage_run
 import help_state
 from pico2d import *
 
-WINDOW_HEIGHT = 600
+
+window_top, window_right = 600, 800
 pause_image = None
 choose_menu = None
 choose_menu_pivot_num = 0
+
+none_select, resume, help, exit = range(4)
+choose_menu_type = {none_select : 0, resume : 1, help : 2, exit : 3}
+
 
 def enter():
     global pause_image, choose_menu
@@ -28,7 +33,7 @@ def update():
 def draw():
     global pause_image, choose_menu
     clear_canvas()
-    pause_image.draw(400,300)
+    pause_image.draw(window_right//2 ,window_top // 2)
     choose_menu.clip_draw(614 * choose_menu_pivot_num,0,614,370,(706+91)/2, WINDOW_HEIGHT - (592+223)/2)
     update_canvas()
 
@@ -46,23 +51,23 @@ def handle_events():
         elif event.type == SDL_MOUSEMOTION:
             if(event.x < 535 and event.x > 265):
                 if (window_to_pico_coordinate_system(event.y) < 358 and window_to_pico_coordinate_system(event.y) > 264):
-                    choose_menu_pivot_num = 1
+                    choose_menu_pivot_num = resume
                 elif(window_to_pico_coordinate_system(event.y) < 240 and window_to_pico_coordinate_system(event.y) > 150):
-                    choose_menu_pivot_num = 2
+                    choose_menu_pivot_num = help
                 elif (window_to_pico_coordinate_system(event.y) < 124 and window_to_pico_coordinate_system(
                         event.y) > 34):
-                    choose_menu_pivot_num = 3
+                    choose_menu_pivot_num = exit
                 else:
-                    choose_menu_pivot_num = 0
+                    choose_menu_pivot_num = none_select
             else:
-                choose_menu_pivot_num = 0
+                choose_menu_pivot_num = none_select
             pass
         elif event.type == SDL_MOUSEBUTTONDOWN:
-            if (choose_menu_pivot_num == 1):
+            if (choose_menu_pivot_num == resume):
                 game_framework.pop_state()
-            elif (choose_menu_pivot_num ==2):
+            elif (choose_menu_pivot_num ==help):
                 game_framework.push_state(help_state)
-            elif (choose_menu_pivot_num ==3):
+            elif (choose_menu_pivot_num ==exit):
                 game_framework.quit()
             pass
 
