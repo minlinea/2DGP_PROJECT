@@ -253,7 +253,7 @@ class Stickman:
                 self.ypos = (self.ypos // 40) * 40
         elif (tile_type == empty_space):
             pass
-        elif (tile_type == thorn):
+        elif (tile_type > 3):
             self.add_event(DIE)
 
     def draw(self):
