@@ -6,12 +6,12 @@ from pico2d import *
 
 
 
-from character import Character
+from stickman import Stickman
 from tile import Tile
 
 name = "StageRun"
 
-character =None
+stickman =None
 tile =None
 now_stage_num = 0
 max_vertical_num, max_horizontal_num = 15, 20
@@ -36,14 +36,14 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 
 
 def enter():
-    global character, tile, now_stage_num
+    global stickman, tile, now_stage_num
     now_stage_num = 0
-    character = Character()
+    stickman = Stickman()
     tile = [([(Tile(j,i,'run')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
     for j in range(0, max_vertical_num, 1):
             game_world.add_objects(tile[j], 0)
     load_stage()
-    game_world.add_object(character, 1)
+    game_world.add_object(stickman, 1)
 
 
 def exit():
@@ -66,16 +66,16 @@ def update():
         game_object.update()
     for i in range(max_vertical_num):
         for tiles in tile:
-            if (collide(character, tiles[i])):
+            if (collide(stickman, tiles[i])):
                 if(tiles[i].type != 0):
-                    character.crash_tile(tiles[i].type)
+                    stickman.crash_tile(tiles[i].type)
 
-    if(character.opacify == 0):
+    if(stickman.opacify == 0):
         game_framework.change_state(title_state)
 
-    if(character.xpos >= window_right - 50):
+    if(stickman.xpos >= window_right - 50):
         load_stage()
-        character.xpos = 700
+        stickman.xpos = 700
 
 def draw():
     clear_canvas()
@@ -87,7 +87,7 @@ def draw():
 
 
 def handle_events():
-    global character
+    global stickman
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -100,7 +100,7 @@ def handle_events():
 
 # --------------------------------------- 키보드 입력 처리----------------------------------------------------#
         else:
-            character.handle_event(event)
+            stickman.handle_event(event)
 # --------------------------------------- 키보드 입력 처리----------------------------------------------------#
 
 def collide(a, b):
