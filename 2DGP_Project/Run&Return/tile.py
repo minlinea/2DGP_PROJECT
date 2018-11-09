@@ -13,6 +13,7 @@ class Tile:
         self.y, self.x = vertical, horizon
         self.type = 0
         self.size = 40
+        self.test = False
 
         if(state == 'run'):
             if(self.image == None):
@@ -32,8 +33,9 @@ class Tile:
     def draw(self):
         self.image.clip_draw(5 + (42 * (self.type % 2)), 4 + ((42 * 4) - (42 * ((self.type + 2) // 2))),
                             self.size - 1, self.size - 1, 20 + self.x * self.size + 1, 20 + self.y * self.size + 1)
-        draw_rectangle(*self.get_bb())
+
+        if self.test:
+            draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x * self.size + 1, self.y * self.size + 1, (self.x + 1) * self.size - 1, (self.y + 1) * self.size - 1
-

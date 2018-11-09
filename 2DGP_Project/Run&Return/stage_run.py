@@ -64,11 +64,23 @@ def update():
 
     for game_object in game_world.all_objects():
         game_object.update()
-    for i in range(max_horizontal_num):
-        for tiles in tile:
-            if (collide(stickman, tiles[i])):
-                if(tiles[i].type != 0):
-                    stickman.crash_tile(tiles[i].type)
+
+    center_x, center_y = int(stickman.xpos // 40), int(stickman.ypos //40)
+    center_x_left, center_x_right = clamp(0, center_x - 1, max_horizontal_num - 1), clamp(0, center_x + 1, max_horizontal_num - 1)
+    center_y_bottom, center_y_top = clamp(0, center_y - 2, max_vertical_num - 1), clamp(0, center_y + 1, max_vertical_num - 1)
+
+    for i in range(0, max_horizontal_num, 1):
+        for j in range (0, max_vertical_num, 1):
+            tile[j][i].test = False
+
+    for i in range(center_x_left, center_x_right + 1, 1):
+        for j in range (center_y_bottom, center_y_top + 1, 1):
+            tile[j][i].test = True
+    #for i in range(max_horizontal_num):
+        #for tiles in tile:
+            #if (collide(stickman, tiles[i])):
+                #if(tiles[i].type != 0):
+                    #stickman.crash_tile(tiles[i].type)
 
     if(stickman.opacify == 0):
         game_framework.change_state(title_state)
