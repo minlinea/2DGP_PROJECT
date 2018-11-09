@@ -37,6 +37,7 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 
 def enter():
     global stickman, tile, now_stage_num
+    game_world.objects = [[], []]
     now_stage_num = 0
     stickman = Stickman()
     tile = [([(Tile(j,i,'run')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
@@ -47,8 +48,7 @@ def enter():
 
 
 def exit():
-    game_world.remove_object(1)
-    game_world.remove_object(0)
+    game_world.clear()
 
 
 

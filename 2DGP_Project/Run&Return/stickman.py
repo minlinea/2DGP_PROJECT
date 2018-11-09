@@ -68,9 +68,8 @@ class Ground:
                 stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = left
         elif event == LANDING:
-            stickman.yspeed = 0
             stickman.y_axiscount = 0
-
+        stickman.yspeed = -1
         pass
 
     @staticmethod
