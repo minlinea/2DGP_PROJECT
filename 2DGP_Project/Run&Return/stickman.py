@@ -239,10 +239,10 @@ class Stickman:
     def crash_tile(self, tile_type):
         if (tile_type == block):
             if(self.xspeed > 0):
-                self.xpos -= 5
+                self.xpos = (self.xpos // 40) * 40 + 20
                 self.xspeed = 0
             elif (self.xspeed < 0):
-                self.xpos += 5
+                self.xpos = (self.xpos // 40) * 40 + 20
                 self.xspeed = 0
             elif (self.y_axiscount >= 93):
                 self.y_axiscount = 0
