@@ -31,7 +31,7 @@ stickman = None
 
 
 # stickman Event
-RIGHT_DOWN, RIGHT_UP, LEFT_DOWN, LEFT_UP, JUMP, INSTANT_DOWN, WAIT, LANDING, DIE = range(9)
+RIGHT_DOWN, RIGHT_UP, LEFT_DOWN, LEFT_UP, JUMP, INSTANT_DOWN, LANDING, DIE = range(8)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -69,7 +69,6 @@ class Ground:
             stickman.direction = left
         elif event == LANDING:
             stickman.y_axiscount = 0
-        stickman.yspeed = -1
         pass
 
     @staticmethod
@@ -81,8 +80,6 @@ class Ground:
         stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
         stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
-        if(stickman.xspeed ==0):
-            stickman.add_event(WAIT)
 
     @staticmethod
     def draw(stickman):
@@ -150,30 +147,6 @@ class Air:
         pass
 
 
-
-class Hold:
-    @staticmethod
-    def enter(stickman, event):
-        if event == WAIT:
-            pass
-        pass
-
-    @staticmethod
-    def exit(stickman, event):
-        pass
-
-    @staticmethod
-    def do(stickman):
-        #stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
-        stickman.frame = 0
-        pass
-
-    @staticmethod
-    def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * image_size), stickman.direction * 0, stickman_size, stickman_size * 2 - 1, stickman.xpos,
-                                  stickman.ypos)
-        pass
-
 class Death:
     def enter(stickman, event):
         stickman.xspeed = 0
@@ -203,10 +176,9 @@ class Death:
 
 
 next_state_table = {
-    Ground: {RIGHT_DOWN: Ground, LEFT_UP: Ground, RIGHT_UP: Ground, LEFT_DOWN: Ground, JUMP: Air, INSTANT_DOWN: Ground, LANDING : Ground, WAIT : Hold, DIE : Death},
+    Ground: {RIGHT_DOWN: Ground, LEFT_UP: Ground, RIGHT_UP: Ground, LEFT_DOWN: Ground, JUMP: Air, INSTANT_DOWN: Ground, LANDING : Ground, DIE : Death},
     Air: {RIGHT_DOWN: Air, RIGHT_UP: Air, LEFT_UP: Air, LEFT_DOWN: Air, JUMP: Air, INSTANT_DOWN: Air, LANDING : Ground, DIE : Death},
-    Hold: {LEFT_DOWN: Ground, RIGHT_DOWN: Ground, LEFT_UP: Hold, RIGHT_UP: Hold, JUMP: Air, INSTANT_DOWN: Ground, WAIT : Hold, DIE : Death},
-    Death: {LEFT_DOWN: Death, RIGHT_DOWN: Death, LEFT_UP: Death, RIGHT_UP: Death, JUMP: Death, INSTANT_DOWN: Death, WAIT : Death, DIE : Death}
+    Death: {LEFT_DOWN: Death, RIGHT_DOWN: Death, LEFT_UP: Death, RIGHT_UP: Death, JUMP: Death, INSTANT_DOWN: Death, DIE : Death}
 }
 
 
@@ -248,7 +220,7 @@ class Stickman:
                 self.ypos = (self.ypos // 40 + 1 ) * 40
                 self.add_event(LANDING)
             elif (self.y_axiscount < 93):
-                self.y_axiscount = 93
+                self.y_axiscount = 180 - self.y_axiscount
                 self.ypos = (self.ypos // 40) * 40
         elif (tile_type == empty_space):
             pass
