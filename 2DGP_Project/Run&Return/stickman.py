@@ -154,8 +154,9 @@ class Death:
 
     @staticmethod
     def do(stickman):
+        stickman.opacify_variation = game_framework.frame_time / 3.0
         if (stickman.opacify > 0):
-            stickman.opacify -= game_framework.frame_time / 3.0
+            stickman.opacify -= stickman.opacify_variation
         else:
             stickman.opacify = 0
         pass
@@ -188,6 +189,7 @@ class Stickman:
         self.xspeed, self.yspeed = 0, 0
         self.y_axiscount = 0
         self.opacify = 1.0
+        self.opacify_variation = 1.0
         self.event_que = []
         self.cur_state = Ground
         self.cur_state.enter(self, None)
