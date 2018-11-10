@@ -68,7 +68,8 @@ class Ground:
                 stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = left
         elif event == LANDING:
-            stickman.y_axiscount = 0
+            stickman.y_axiscount = 93
+        stickman.y_axiscount = 93
         pass
 
     @staticmethod
@@ -78,6 +79,8 @@ class Ground:
     @staticmethod
     def do(stickman):
         stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
+        stickman.calculation_y_axis_movement()
+        stickman.ypos += stickman.yspeed  # * game_framework.frame_time
         stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
 
@@ -123,16 +126,8 @@ class Air:
     @staticmethod
     def do(stickman):
         stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
-        if(stickman.y_axiscount % 6 == 1):
-            stickman.yspeed = -((stickman.y_axiscount)//6) + 15
-            stickman.y_axiscount += 1
-        else:
-            stickman.yspeed = 0
-            stickman.y_axiscount = (stickman.y_axiscount + 1) % 183
 
-        if(stickman.y_axiscount == 0):
-            stickman.y_axiscount = 176
-
+        stickman.calculation_y_axis_movement()
         stickman.ypos += stickman.yspeed #* game_framework.frame_time
 
         stickman.xpos += stickman.xspeed * game_framework.frame_time
@@ -207,16 +202,28 @@ class Stickman:
             self.cur_state.enter(self, event)
 
 
+    def calculation_y_axis_movement(self):
+        if (self.y_axiscount % 6 == 1):
+            self.yspeed = -((self.y_axiscount) // 6) + 15
+            self.y_axiscount += 1
+        else:
+            self.yspeed = 0
+            self.y_axiscount = (self.y_axiscount + 1) % 183
+
+        if (self.y_axiscount == 0):
+            self.y_axiscount = 176
+
+
     def crash_tile(self, tile_type):
         if (tile_type == block):
             if(self.xspeed > 0):
-                self.xpos = (self.xpos // 40) * 40 + 20
-                self.xspeed = 0
+                pass
+                #self.xpos = (self.xpos // 40) * 40 + 20
+                #self.xspeed = 0
             elif (self.xspeed < 0):
                 self.xpos = (self.xpos // 40) * 40 + 20
                 self.xspeed = 0
             elif (self.y_axiscount >= 93):
-                self.y_axiscount = 0
                 self.ypos = (self.ypos // 40 + 1 ) * 40
                 self.add_event(LANDING)
             elif (self.y_axiscount < 93):

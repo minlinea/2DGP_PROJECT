@@ -65,7 +65,7 @@ def update():
     for game_object in game_world.all_objects():
         game_object.update()
 
-    center_x, center_y = int(stickman.xpos // 40), int(stickman.ypos //40)
+    center_x, center_y = int(stickman.xpos // 40), int(stickman.ypos // 40)
     center_x_left, center_x_right = clamp(0, center_x - 1, max_horizontal_num - 1), clamp(0, center_x + 1, max_horizontal_num - 1)
     center_y_bottom, center_y_top = clamp(0, center_y - 2, max_vertical_num - 1), clamp(0, center_y + 1, max_vertical_num - 1)
 
@@ -81,7 +81,7 @@ def update():
 
     if(stickman.xpos >= window_right - 50):
         load_stage()
-        stickman.xpos = 700
+        stickman.xpos = 700 #임시 설정
 
 def draw():
     clear_canvas()

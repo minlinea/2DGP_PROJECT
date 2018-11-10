@@ -9,11 +9,11 @@ state = Enum('state', 'ground, air, hold, death, waiting')
 
 class Tile:
     image = None
+    size = 40
+
     def __init__(self, vertical, horizon, state):
         self.y, self.x = vertical, horizon
         self.type = 0
-        self.size = 40
-
         if(state == 'run'):
             if(self.image == None):
                self.image = load_image('resource\\tile\\stage_run_tile_kind.png')
