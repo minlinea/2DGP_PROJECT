@@ -30,10 +30,12 @@ class Tile:
         pass
 
     def draw(self):
-        self.image.clip_draw(5 + (42 * (self.type % 2)), 4 + ((42 * 4) - (42 * ((self.type + 2) // 2))),
-                            self.size - 1, self.size - 1, 20 + self.x * self.size + 1, 20 + self.y * self.size + 1)
+        self.image.clip_draw(1 + 2 * (self.type % 2) + (40 * (self.type % 2)), 1,
+                                self.size, self.size, 20 + self.x * self.size, 20 + self.y * self.size)
+        #self.image.clip_draw(1 + (40 * (self.type % 2)), 1 + ((40 * 4) - (40 * ((self.type + 2) // 2))),
+                            #self.size, self.size, 20 + self.x * self.size, 20 + self.y * self.size)
 
-        draw_rectangle(*self.get_bb())
+        #draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x * self.size + 1, self.y * self.size + 1, (self.x + 1) * self.size - 1, (self.y + 1) * self.size - 1
