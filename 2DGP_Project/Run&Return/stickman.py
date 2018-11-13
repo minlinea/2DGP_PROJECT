@@ -68,7 +68,7 @@ class Ground:
                 stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = left
         elif event == LANDING:
-            stickman.y_axiscount = 93
+            pass
         stickman.y_axiscount = 93
         pass
 
@@ -214,6 +214,8 @@ class Stickman:
 
         if (self.y_axiscount == 0):
             self.y_axiscount = 176
+        if(self.cur_state == Ground):
+            self.y_axiscount = 93
 
 
     def crash_tile(self, tile_type):
