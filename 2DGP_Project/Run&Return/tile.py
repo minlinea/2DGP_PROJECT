@@ -1,11 +1,6 @@
 import game_framework
-import threading
 
 from pico2d import *
-from enum import Enum
-
-state = Enum('state', 'ground, air, hold, death, waiting')
-
 
 class Tile:
     image = None

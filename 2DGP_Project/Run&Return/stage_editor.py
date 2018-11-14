@@ -4,6 +4,7 @@ from pico2d import *
 
 
 from tile import Tile
+from image import Image
 
 tile = None
 tile_kind = None
@@ -12,25 +13,14 @@ imposible_collocate = None
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
 
-tile_choose_place = [(33,214),(87,214), (33,155),(87,155) , (33,96),(87,96),(33,35),(87,35)]
+tile_choose_place = [(31,214),(63,214), (21,155),(63,155) , (21,96),(63,96),(21,35),(63,35)]
 tile_choose_num = 0
 save_count = 0
 load_count = 0
 click = False
 
 #----------------------------------------게임 오브젝트 클래스--------------------------------------#
-class Image:
-    def __init__(self, x, y, left, bottom, width, height, title):
-        self.x, self.y = x,y
-        self.left, self.bottom = left, bottom
-        self.width, self.height =  width, height
-        self.image = load_image(title)
 
-    def draw(self, x, y):
-        self.image.draw(x, y)
-
-    def clip_draw(self, x, y):
-        self.image.clip_draw(self.left,self.bottom,self.width, self.height,x,y)
 
 
 #----------------------------------------게임 오브젝트 클래스--------------------------------------#
