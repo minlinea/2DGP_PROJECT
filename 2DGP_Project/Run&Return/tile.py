@@ -5,7 +5,6 @@ from pico2d import *
 class Tile:
     image = None
     size = 40
-
     def __init__(self, vertical, horizon, state):
         self.y, self.x = vertical, horizon
         self.type = 0
@@ -28,10 +27,6 @@ class Tile:
         self.image.clip_draw(1 + 2 * (self.type % 2) + (40 * (self.type % 2)),
                              1 + 2 * (3 - (self.type // 2)) + 40 * (3 - (self.type // 2)),  #1, 43, 85, 127 41 83 125 167
                                 self.size, self.size, 20 + self.x * self.size, 20 + self.y * self.size)
-        #self.image.clip_draw(1 + (40 * (self.type % 2)), 1 + ((40 * 4) - (40 * ((self.type + 2) // 2))),
-                            #self.size, self.size, 20 + self.x * self.size, 20 + self.y * self.size)
-
-        #draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.x * self.size + 1, self.y * self.size + 1, (self.x + 1) * self.size - 1, (self.y + 1) * self.size - 1

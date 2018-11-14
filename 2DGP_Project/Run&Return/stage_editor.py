@@ -1,4 +1,5 @@
 import game_framework
+import game_world
 import title_state
 from pico2d import *
 
@@ -12,6 +13,7 @@ tile_choose = None
 imposible_collocate = None
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
+max_vertical_num, max_horizontal_num = 15, 20
 
 tile_choose_place = [(31,214),(63,214), (21,155),(63,155) , (21,96),(63,96),(21,35),(63,35)]
 tile_choose_num = 0
@@ -19,29 +21,28 @@ save_count = 0
 load_count = 0
 click = False
 
-#----------------------------------------게임 오브젝트 클래스--------------------------------------#
 
-
-
-#----------------------------------------게임 오브젝트 클래스--------------------------------------#
-
-#----------------------------------------게임 프레임 워크-------------------------------------------#
 def enter():
     global tile, tile_kind, tile_choose, imposible_collocate
-    tile = [([(Tile(j,i,'editor')) for i in range(20)]) for j in range(15)]
+    game_world.objects = [[], []]
+    tile = [([(Tile(j, i, 'editor')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
+    for j in range(0, max_vertical_num, 1):
+        game_world.add_objects(tile[j], 0)
+    load_stage()
+
     tile_choose = Image(tile_choose_place[tile_choose_num][0], tile_choose_place[tile_choose_num][1],
                     0,0, 53+1, 61+1, 'resource\\tile\\tile_choose.png')
+    game_world.add_object(tile_choose,1)
+
     tile_kind = Image((120 / 2), (250 / 2), 0, 0, 120, 250, 'resource\\tile\\tile_kind.png')
+    game_world.add_object(tile_kind, 1)
+
     imposible_collocate = Image((120/2), (400/2), 0, 0, 120, 400, 'resource\\tile\imposible_collocate.png')
-    pass
+    game_world.add_object(imposible_collocate, 1)
 
 
 def exit():
-    global tile, tile_kind, tile_choose, imposible_collocate
-    #del(tile)
-    del(tile_kind)
-    del(tile_choose)
-    del(imposible_collocate)
+    game_world.clear()
 
 
 def pause():
@@ -58,6 +59,7 @@ def update():
 
 def draw():
     clear_canvas()
+
     for j in range(0, 15, 1):
         for i in range(0, 20, 1):
             tile[j][i].draw()
