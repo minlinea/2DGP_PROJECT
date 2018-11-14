@@ -10,8 +10,6 @@ class Image:
         self.width, self.height =  width, height
         self.image = load_image(title)
 
-    def draw(self, x, y):
-        self.image.draw(x, y)
 
-    def clip_draw(self, x, y):
-        self.image.clip_draw(self.left,self.bottom,self.width, self.height,x,y)
+    def draw(self):
+        self.image.clip_draw(self.left,self.bottom,self.width, self.height,self.x,self.y)
