@@ -16,7 +16,7 @@ imposible_collocate_right = None
 WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
 max_vertical_num, max_horizontal_num = 15, 20
 
-tile_choose_place = [(31,214),(63,214), (21,155),(63,155) , (21,96),(63,96),(21,35),(63,35)]
+tile_choose_place = [(30,218),(90,218), (30,156),(90,156) , (30,93),(90,93),(30,32),(90,32)]
 tile_choose_num = 0
 save_count = 0
 load_count = 0
@@ -43,7 +43,7 @@ def enter():
     game_world.add_object(tile_kind, 1)
 
     tile_choose = Image(tile_choose_place[tile_choose_num][0], tile_choose_place[tile_choose_num][1],
-                    0,0, 53+1, 61+1, 'resource\\tile\\tile_choose.png')
+                    0,0, 62, 62, 'resource\\tile\\tile_choose.png')
     game_world.add_object(tile_choose,1)
 
 
