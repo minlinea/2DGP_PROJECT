@@ -2,6 +2,7 @@ import game_framework
 import game_world
 import title_state
 import pause_state
+import stage_return
 from pico2d import *
 
 
@@ -16,7 +17,7 @@ tile =None
 now_stage_num = 0
 max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
-
+time_past = 0
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
@@ -36,7 +37,8 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 
 
 def enter():
-    global stickman, tile, now_stage_num
+    global stickman, tile, now_stage_num, time_past
+    time_past = get_time()
     game_world.objects = [[], []]
     now_stage_num = 0
     stickman = Stickman()
@@ -78,7 +80,8 @@ def update():
 
     if(stickman.opacify == 0):
         game_framework.change_state(title_state)
-
+    elif(get_time() - time_past >= 3):
+        game_framework.change_state(stage_return)
     if(stickman.xpos >= window_right - 50):
         load_stage()
         stickman.xpos = 700 #임시 설정

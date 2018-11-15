@@ -224,13 +224,14 @@ class Stickman:
                 pass
                 #self.xpos = (self.xpos // 40) * 40 + 20
                 #self.xspeed = 0
-            elif (self.xspeed < 0):
-                self.xpos = (self.xpos // 40) * 40 + 20
-                self.xspeed = 0
-            elif (self.y_axiscount >= 93):
+            if (self.xspeed < 0):
+                #self.xpos = (self.xpos // 40) * 40 + 20
+                #self.xspeed = 0
+                pass
+            if (self.y_axiscount >= 93):
                 self.ypos = (self.ypos // 40 + 1 ) * 40
                 self.add_event(LANDING)
-            elif (self.y_axiscount < 93):
+            if (self.y_axiscount < 93):
                 self.y_axiscount = 180 - self.y_axiscount
                 self.ypos = (self.ypos // 40) * 40
         elif (tile_type == empty_space):
