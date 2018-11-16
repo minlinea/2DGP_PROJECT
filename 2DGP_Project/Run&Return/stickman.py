@@ -98,7 +98,8 @@ class Air:
     @staticmethod
     def enter(stickman, event):
         if event == JUMP:
-            stickman.yspeed = jump_momentum
+            if(stickman.yspeed == 0):
+                stickman.yspeed = jump_momentum
         elif event == RIGHT_DOWN:
             stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = right
