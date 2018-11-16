@@ -33,7 +33,7 @@ stickman = None
 
 
 # stickman Event
-RIGHT_DOWN, RIGHT_UP, LEFT_DOWN, LEFT_UP, JUMP, INSTANT_DOWN, LANDING, DIE = range(8)
+RIGHT_DOWN, RIGHT_UP, LEFT_DOWN, LEFT_UP, JUMP, INSTANT_DOWN, LANDING, FALL, DIE = range(9)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RIGHT_DOWN,
@@ -123,6 +123,8 @@ class Air:
             stickman.direction = left
         elif event == INSTANT_DOWN:
             stickman.yspeed = 0
+        elif event == FALL:
+            pass
         stickman.crash = False
         pass
 
@@ -183,9 +185,9 @@ class Death:
 
 
 next_state_table = {
-    Ground: {RIGHT_DOWN: Ground, LEFT_UP: Ground, RIGHT_UP: Ground, LEFT_DOWN: Ground, JUMP: Air, INSTANT_DOWN: Ground, LANDING : Ground, DIE : Death},
-    Air: {RIGHT_DOWN: Air, RIGHT_UP: Air, LEFT_UP: Air, LEFT_DOWN: Air, JUMP: Air, INSTANT_DOWN: Air, LANDING : Ground, DIE : Death},
-    Death: {LEFT_DOWN: Death, RIGHT_DOWN: Death, LEFT_UP: Death, RIGHT_UP: Death, JUMP: Death, INSTANT_DOWN: Death, DIE : Death}
+    Ground: {RIGHT_DOWN: Ground, LEFT_UP: Ground, RIGHT_UP: Ground, LEFT_DOWN: Ground, JUMP: Air, INSTANT_DOWN: Ground, LANDING : Ground, FALL : Air, DIE : Death},
+    Air: {RIGHT_DOWN: Air, RIGHT_UP: Air, LEFT_UP: Air, LEFT_DOWN: Air, JUMP: Air, INSTANT_DOWN: Air, LANDING : Ground, FALL: Air, DIE : Death},
+    Death: {LEFT_DOWN: Death, RIGHT_DOWN: Death, LEFT_UP: Death, RIGHT_UP: Death, JUMP: Death, INSTANT_DOWN: Death, LANDING:Death, FALL: Death, DIE : Death}
 }
 
 
@@ -220,6 +222,8 @@ class Stickman:
 
         if(self.yspeed <= -jump_momentum and self.cur_state == Air):
             self.yspeed = -jump_momentum
+        elif (self.cur_state == Ground and self.yspeed <=-2):
+            self.add_event(FALL)
 
 
 
