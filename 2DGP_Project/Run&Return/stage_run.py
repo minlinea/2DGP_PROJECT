@@ -18,7 +18,7 @@ now_stage_num = 0
 max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 stage_past_time = 0
-
+limit_time = 30
 font = None
 
 
@@ -41,7 +41,8 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 
 
 def enter():
-    global stickman, tile, now_stage_num, stage_past_time, font
+    global stickman, tile, now_stage_num, stage_past_time, font, limit_time
+    limit_time = 30
     font = load_font('ENCR10B.TTF', 32)
     stage_past_time = get_time()
     game_world.objects = [[], []]
@@ -89,7 +90,7 @@ def update():
 
     if(stickman.opacify == 0):
         game_framework.change_state(title_state)
-    elif(get_time() - stage_past_time >= 5):
+    elif(limit_time - (get_time() - stage_past_time) <= 0):
         game_framework.change_state(stage_return)
     if(stickman.xpos >= window_right - 50):
         load_stage()
@@ -101,7 +102,7 @@ def draw():
     for game_object in game_world.all_objects():
         game_object.draw()
 
-    time = (get_time() - stage_past_time)
+    time = limit_time - (get_time() - stage_past_time)
     font.draw(window_right - 80, 30, '[%2.0f]' % time, (255, 255, 255))
 
     update_canvas()
