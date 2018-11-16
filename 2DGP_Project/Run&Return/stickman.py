@@ -185,7 +185,7 @@ next_state_table = {
 
 class Stickman:
     def __init__(self):
-        self.xpos, self.ypos = 150, 280
+        self.xpos, self.ypos = 150, 280+1
         self.frame = 0
         self.image = load_image('resource\\character\\animation_sheet_demo.png')
         self.direction = right
@@ -220,14 +220,13 @@ class Stickman:
         if (tile_type >= thorn):
             self.add_event(DIE)
         elif (tile_type == block):
-
             if ((i == stickman_x + 1 or i == stickman_x - 1) and (j == stickman_y or j == stickman_y-1)):
                 self.xpos = (self.xpos // 40) * 40 + 20
                 self.crash = True
-            elif (j== stickman_y + 1 and i == stickman_x):
+            elif (j== stickman_y + 1 and i == stickman_x) and self.yspeed >0:
                 self.yspeed = -self.yspeed
-                self.ypos = (self.ypos // 40) * 40
-            elif (j== stickman_y - 1 and i == stickman_x):
+                self.ypos = (self.ypos // 40) * 40 + 1
+            elif ((j== stickman_y - 1 and i == stickman_x) and self.yspeed <=0):
                 self.add_event(LANDING)
 
 

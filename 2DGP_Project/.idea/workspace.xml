@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adc7d1e6-ffa6-443c-8106-9a4828ebf995" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/save_stage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/save_stage.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/stage_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stage_run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Run&amp;Return/stickman.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stickman.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,12 +36,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="5302" />
+          <entry key="py" value="5388" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="5302" />
+          <entry key="Python" value="5388" />
         </counts>
       </usages-collector>
     </session>
@@ -53,11 +51,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Run&amp;Return/stickman.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="217" column="42" lean-forward="true" selection-start-line="217" selection-start-column="42" selection-end-line="217" selection-end-column="42" />
+            <state relative-caret-position="229">
+              <caret line="223" column="55" lean-forward="true" selection-start-line="223" selection-start-column="55" selection-end-line="223" selection-end-column="55" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
-                <marker date="1542353858089" expanded="true" signature="6306:6485" ph="..." />
+                <marker date="1542354741545" expanded="true" signature="6308:6487" ph="..." />
               </folding>
             </state>
           </provider>
@@ -173,6 +171,7 @@
       <find>WAIT</find>
       <find>y_axis</find>
       <find>image_size</find>
+      <find>ypos</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,9 +193,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="255" />
-    <option name="y" value="55" />
-    <option name="width" value="1100" />
+    <option name="x" value="62" />
+    <option name="y" value="24" />
+    <option name="width" value="1259" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -294,10 +293,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="255" y="55" width="1100" height="1047" extended-state="0" />
+    <frame x="62" y="24" width="1259" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24952918" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21703522" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -348,13 +347,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Run&amp;Return/stickman.py</url>
-          <line>230</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Run&amp;Return/stickman.py</url>
           <line>229</line>
-          <option name="timeStamp" value="38" />
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -526,11 +520,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/stickman.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="217" column="42" lean-forward="true" selection-start-line="217" selection-start-column="42" selection-end-line="217" selection-end-column="42" />
+        <state relative-caret-position="229">
+          <caret line="223" column="55" lean-forward="true" selection-start-line="223" selection-start-column="55" selection-end-line="223" selection-end-column="55" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
-            <marker date="1542353858089" expanded="true" signature="6306:6485" ph="..." />
+            <marker date="1542354741545" expanded="true" signature="6308:6487" ph="..." />
           </folding>
         </state>
       </provider>
