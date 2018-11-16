@@ -72,7 +72,7 @@ class Ground:
         elif event == LANDING:
             pass
         stickman.yspeed = 0
-        stickman.crash = False
+        stickman.x_crash = False
         pass
 
     @staticmethod
@@ -89,7 +89,7 @@ class Ground:
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
 
-        if not (stickman.crash):
+        if not (stickman.x_crash):
             stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
 
@@ -105,7 +105,8 @@ class Air:
     @staticmethod
     def enter(stickman, event):
         if event == JUMP:
-            if(stickman.yspeed <= 0):
+            if not (stickman.jump_lock):
+                stickman.jump_lock = True
                 stickman.yspeed = jump_momentum
         elif event == RIGHT_DOWN:
             stickman.xspeed += RUN_SPEED_PPS
@@ -125,7 +126,7 @@ class Air:
             stickman.yspeed = 0
         elif event == FALL:
             pass
-        stickman.crash = False
+        stickman.x_crash = False
         pass
 
     @staticmethod
@@ -133,6 +134,7 @@ class Air:
         if(event == LANDING):
             stickman.ypos = (stickman.ypos // tile_size + 1) * tile_size
             stickman.yspeed = 0
+            stickman.jump_lock = False
         pass
 
     @staticmethod
@@ -142,7 +144,7 @@ class Air:
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
 
-        if not (stickman.crash):
+        if not (stickman.x_crash):
             stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
         stickman.ypos = clamp(0 + stickman_size, stickman.ypos, window_top - stickman_size)
@@ -156,6 +158,8 @@ class Air:
 
 
 class Death:
+
+    @staticmethod
     def enter(stickman, event):
         stickman.xspeed = 0
         stickman.yspeed = 0
@@ -202,7 +206,8 @@ class Stickman:
         self.xspeed, self.yspeed = 0, 0
         self.opacify = 1.0
         self.opacify_variation = 1.0
-        self.crash = False
+        self.x_crash = False
+        self.jump_lock = False
         self.event_que = []
         self.cur_state = Ground
         self.cur_state.enter(self, None)
@@ -236,11 +241,11 @@ class Stickman:
             if (i == stickman_x + 1 and (j == stickman_y or j == stickman_y-1)):
                 stickman_x_interval = self.xpos - (stickman_x)* tile_size-1
                 self.xpos = (stickman_x) * 40 + stickman_x_interval
-                self.crash = True
+                self.x_crash = True
             elif (i == stickman_x - 1 and (j == stickman_y or j == stickman_y-1)):
                 stickman_x_interval = self.xpos - (stickman_x) * tile_size+1
                 self.xpos = (stickman_x) * 40 + stickman_x_interval
-                self.crash = True
+                self.x_crash = True
             elif (j== stickman_y + 1 and i == stickman_x) and self.yspeed >0:
                 self.yspeed = -self.yspeed
                 self.ypos = (self.ypos // 40) * 40
