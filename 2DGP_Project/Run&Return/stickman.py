@@ -24,6 +24,8 @@ image_size = 40
 
 window_top, window_right = 600, 800
 
+jump_momentum = RUN_SPEED_KMPH * 20
+jump_momentum_reduction = 3
 
 stickman = None
 
@@ -68,8 +70,8 @@ class Ground:
                 stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = left
         elif event == LANDING:
-            pass
-        stickman.y_axiscount = 93
+            stickman.ypos = (stickman.ypos // 40 + 1) * 40
+        stickman.yspeed = 0
         pass
 
     @staticmethod
@@ -79,8 +81,6 @@ class Ground:
     @staticmethod
     def do(stickman):
         stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
-        stickman.calculation_y_axis_movement()
-        stickman.ypos += stickman.yspeed  # * game_framework.frame_time
         stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
 
@@ -96,23 +96,23 @@ class Air:
     @staticmethod
     def enter(stickman, event):
         if event == JUMP:
-            stickman.y_axiscount = 1
+            stickman.yspeed = jump_momentum
         elif event == RIGHT_DOWN:
             stickman.xspeed += RUN_SPEED_PPS
-            stickman.direction = 1
+            stickman.direction = right
         elif event == LEFT_DOWN:
             stickman.xspeed -= RUN_SPEED_PPS
             stickman.direction = left
         elif event == RIGHT_UP:
             if (stickman.xspeed != 0):
                 stickman.xspeed -= RUN_SPEED_PPS
-            stickman.direction = 1
+            stickman.direction = right
         elif event == LEFT_UP:
             if (stickman.xspeed != 0):
                 stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = left
         elif event == INSTANT_DOWN:
-            stickman.y_axiscount = 176
+            stickman.yspeed = 0
             if(stickman.xspeed > 0):
                 stickman.direction = right
             else:
@@ -127,8 +127,8 @@ class Air:
     def do(stickman):
         stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
 
-        stickman.calculation_y_axis_movement()
-        stickman.ypos += stickman.yspeed #* game_framework.frame_time
+        stickman.calculation_yspeed()
+        stickman.ypos += stickman.yspeed * game_framework.frame_time
 
         stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
@@ -187,7 +187,6 @@ class Stickman:
         self.image = load_image('resource\\character\\animation_sheet_demo.png')
         self.direction = right
         self.xspeed, self.yspeed = 0, 0
-        self.y_axiscount = 0
         self.opacify = 1.0
         self.opacify_variation = 1.0
         self.event_que = []
@@ -204,18 +203,12 @@ class Stickman:
             self.cur_state.enter(self, event)
 
 
-    def calculation_y_axis_movement(self):
-        if (self.y_axiscount % 6 == 1):
-            self.yspeed = -((self.y_axiscount) // 6) + 15
-            self.y_axiscount += 1
-        else:
-            self.yspeed = 0
-            self.y_axiscount = (self.y_axiscount + 1) % 183
+    def calculation_yspeed(self):
+        self.yspeed = self.yspeed - jump_momentum_reduction
 
-        if (self.y_axiscount == 0):
-            self.y_axiscount = 176
-        if(self.cur_state == Ground):
-            self.y_axiscount = 93
+        if(self.yspeed <= -jump_momentum):
+            self.yspeed = 0
+
 
 
     def crash_tile(self, tile_type):
@@ -228,11 +221,10 @@ class Stickman:
                 #self.xpos = (self.xpos // 40) * 40 + 20
                 #self.xspeed = 0
                 pass
-            if (self.y_axiscount >= 93):
-                self.ypos = (self.ypos // 40 + 1 ) * 40
+            if (self.yspeed <= 0):
                 self.add_event(LANDING)
-            if (self.y_axiscount < 93):
-                self.y_axiscount = 180 - self.y_axiscount
+            if (self.yspeed > 0):
+                self.yspeed = 15 - self.yspeed
                 self.ypos = (self.ypos // 40) * 40
         elif (tile_type == empty_space):
             pass
@@ -241,8 +233,6 @@ class Stickman:
 
     def draw(self):
         self.cur_state.draw(self)
-        draw_rectangle(*self.get_bb())
-
 
     def get_bb(self):
         return self.xpos - stickman_size//2, self.ypos - stickman_size, self.xpos + stickman_size//2, self.ypos+stickman_size

@@ -80,7 +80,7 @@ def update():
 
     if(stickman.opacify == 0):
         game_framework.change_state(title_state)
-    elif(get_time() - time_past >= 3):
+    elif(get_time() - time_past >= 10):
         game_framework.change_state(stage_return)
     if(stickman.xpos >= window_right - 50):
         load_stage()
