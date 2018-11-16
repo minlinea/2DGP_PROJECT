@@ -47,7 +47,7 @@ key_event_table = {
 left, right = range(2)
 direction = {left : 0, right : 1}
 empty_space, block, thorn = range(3)
-tile_type = {empty_space : 0, block : 1, thorn : 2}
+tile_type = {empty_space : 0, block : 1, thorn : 4}
 
 
 #state
@@ -215,24 +215,23 @@ class Stickman:
 
 
 
-    def crash_tile(self, tile_type):
-        if (tile_type == block):
-            if(self.xspeed > 0 and self.yspeed == 0):
-                self.xpos = (self.xpos // 40) * 40 + 20
-                self.crash = True
-            elif (self.xspeed < 0 and self.yspeed == 0):
-                self.xpos = (self.xpos // 40) * 40 + 20
-                self.crash = True
+    def crash_tile(self, tile_type, j, i):
+        stickman_x, stickman_y = self.xpos // 40, self.ypos // 40
+        if (tile_type >= thorn):
+            self.add_event(DIE)
+        elif (tile_type == block):
 
-            elif (self.yspeed <= 0):
-                self.add_event(LANDING)
-            elif (self.yspeed > 0):
+            if ((i == stickman_x + 1 or i == stickman_x - 1) and (j == stickman_y or j == stickman_y-1)):
+                self.xpos = (self.xpos // 40) * 40 + 20
+                self.crash = True
+            elif (j== stickman_y + 1 and i == stickman_x):
                 self.yspeed = -self.yspeed
                 self.ypos = (self.ypos // 40) * 40
-        elif (tile_type == empty_space):
-            pass
-        elif (tile_type > 3):
-            self.add_event(DIE)
+            elif (j== stickman_y - 1 and i == stickman_x):
+                self.add_event(LANDING)
+
+
+
 
     def draw(self):
         self.cur_state.draw(self)

@@ -76,7 +76,7 @@ def update():
         for j in range (center_y_bottom, center_y_top + 1, 1):
             if (collide(stickman, tile[j][i])):
                 if (tile[j][i].type != 0):
-                    stickman.crash_tile(tile[j][i].type)
+                    stickman.crash_tile(tile[j][i].type, j, i)
 
     if(stickman.opacify == 0):
         game_framework.change_state(title_state)
