@@ -20,7 +20,7 @@ FRAMES_PER_ACTION = 4
 
 
 stickman_size = 39
-image_size = 40
+tile_size = 40
 
 window_top, window_right = 600, 800
 
@@ -70,7 +70,7 @@ class Ground:
                 stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = left
         elif event == LANDING:
-            stickman.ypos = (stickman.ypos // 40 + 1) * 40
+            pass
         stickman.yspeed = 0
         pass
 
@@ -86,7 +86,7 @@ class Ground:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * image_size), stickman.direction * 0, stickman_size, stickman_size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction, stickman_size, stickman_size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
         pass
 
@@ -113,14 +113,13 @@ class Air:
             stickman.direction = left
         elif event == INSTANT_DOWN:
             stickman.yspeed = 0
-            if(stickman.xspeed > 0):
-                stickman.direction = right
-            else:
-                stickman.direction = left
         pass
 
     @staticmethod
     def exit(stickman, event):
+        if(event == LANDING):
+            stickman.ypos = (stickman.ypos // tile_size + 1) * tile_size
+            stickman.yspeed = 0
         pass
 
     @staticmethod
@@ -137,7 +136,7 @@ class Air:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * image_size), stickman.direction * 0,stickman_size, stickman_size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0,stickman_size, stickman_size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
         pass
 
@@ -164,7 +163,7 @@ class Death:
     @staticmethod
     def draw(stickman):
         stickman.image.opacify(stickman.opacify)
-        stickman.image.clip_draw(int(stickman.frame * image_size), stickman.direction * 0, stickman_size, stickman_size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0, stickman_size, stickman_size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
         pass
 
@@ -206,8 +205,8 @@ class Stickman:
     def calculation_yspeed(self):
         self.yspeed = self.yspeed - jump_momentum_reduction
 
-        if(self.yspeed <= -jump_momentum):
-            self.yspeed = 0
+        if(self.yspeed <= -jump_momentum and self.cur_state == Air):
+            self.yspeed = -jump_momentum
 
 
 
@@ -224,7 +223,7 @@ class Stickman:
             if (self.yspeed <= 0):
                 self.add_event(LANDING)
             if (self.yspeed > 0):
-                self.yspeed = 15 - self.yspeed
+                self.yspeed = -self.yspeed
                 self.ypos = (self.ypos // 40) * 40
         elif (tile_type == empty_space):
             pass
