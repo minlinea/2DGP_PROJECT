@@ -217,16 +217,22 @@ class Stickman:
 
 
     def crash_tile(self, tile_type, j, i):
-        stickman_x, stickman_y = self.xpos // 40, self.ypos // 40
+        stickman_x, stickman_y = self.xpos // tile_size, self.ypos // tile_size
+
         if (tile_type >= thorn):
             self.add_event(DIE)
         elif (tile_type == block):
-            if ((i == stickman_x + 1 or i == stickman_x - 1) and (j == stickman_y or j == stickman_y-1)):
-                self.xpos = (self.xpos // 40) * 40 + 20
+            if (i == stickman_x + 1 and (j == stickman_y or j == stickman_y-1)):
+                stickman_x_interval = self.xpos - (stickman_x)* tile_size-1
+                self.xpos = (stickman_x) * 40 + stickman_x_interval
+                self.crash = True
+            elif (i == stickman_x - 1 and (j == stickman_y or j == stickman_y-1)):
+                stickman_x_interval = self.xpos - (stickman_x) * tile_size+1
+                self.xpos = (stickman_x) * 40 + stickman_x_interval
                 self.crash = True
             elif (j== stickman_y + 1 and i == stickman_x) and self.yspeed >0:
                 self.yspeed = -self.yspeed
-                self.ypos = (self.ypos // 40) * 40 + 1
+                self.ypos = (self.ypos // 40) * 40
             elif ((j== stickman_y - 1 and i == stickman_x) and self.yspeed <=0):
                 self.add_event(LANDING)
 
