@@ -72,6 +72,7 @@ class Ground:
         elif event == LANDING:
             pass
         stickman.yspeed = 0
+        stickman.crash = False
         pass
 
     @staticmethod
@@ -81,7 +82,8 @@ class Ground:
     @staticmethod
     def do(stickman):
         stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
-        stickman.xpos += stickman.xspeed * game_framework.frame_time
+        if not (stickman.crash):
+            stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
 
     @staticmethod
@@ -113,6 +115,7 @@ class Air:
             stickman.direction = left
         elif event == INSTANT_DOWN:
             stickman.yspeed = 0
+        stickman.crash = False
         pass
 
     @staticmethod
@@ -129,7 +132,8 @@ class Air:
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
 
-        stickman.xpos += stickman.xspeed * game_framework.frame_time
+        if not (stickman.crash):
+            stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
         stickman.ypos = clamp(0 + stickman_size, stickman.ypos, window_top - stickman_size)
         pass
@@ -188,6 +192,7 @@ class Stickman:
         self.xspeed, self.yspeed = 0, 0
         self.opacify = 1.0
         self.opacify_variation = 1.0
+        self.crash = False
         self.event_que = []
         self.cur_state = Ground
         self.cur_state.enter(self, None)
@@ -212,17 +217,16 @@ class Stickman:
 
     def crash_tile(self, tile_type):
         if (tile_type == block):
-            if(self.xspeed > 0):
-                pass
-                #self.xpos = (self.xpos // 40) * 40 + 20
-                #self.xspeed = 0
-            if (self.xspeed < 0):
-                #self.xpos = (self.xpos // 40) * 40 + 20
-                #self.xspeed = 0
-                pass
-            if (self.yspeed <= 0):
+            if(self.xspeed > 0 and self.yspeed == 0):
+                self.xpos = (self.xpos // 40) * 40 + 20
+                self.crash = True
+            elif (self.xspeed < 0 and self.yspeed == 0):
+                self.xpos = (self.xpos // 40) * 40 + 20
+                self.crash = True
+
+            elif (self.yspeed <= 0):
                 self.add_event(LANDING)
-            if (self.yspeed > 0):
+            elif (self.yspeed > 0):
                 self.yspeed = -self.yspeed
                 self.ypos = (self.ypos // 40) * 40
         elif (tile_type == empty_space):

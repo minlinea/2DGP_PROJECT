@@ -81,7 +81,8 @@ def update():
     if(stickman.opacify == 0):
         game_framework.change_state(title_state)
     elif(get_time() - time_past >= 10):
-        game_framework.change_state(stage_return)
+        pass
+        #game_framework.change_state(stage_return)
     if(stickman.xpos >= window_right - 50):
         load_stage()
         stickman.xpos = 700 #임시 설정
