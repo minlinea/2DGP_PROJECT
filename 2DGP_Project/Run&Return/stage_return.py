@@ -72,16 +72,21 @@ def update():
     center_y_bottom, center_y_top = clamp(0, center_y - 2, max_vertical_num - 1), clamp(0, center_y + 1, max_vertical_num - 1)
 
 
+    collide_check = False   #stickman.crash_tile 검사용
     for i in range(center_x_left, center_x_right + 1, 1):
         for j in range (center_y_bottom, center_y_top + 1, 1):
             if (collide(stickman, tile[j][i])):
                 if (tile[j][i].type != 0):
-                    stickman.crash_tile(tile[j][i].type)
+                    stickman.crash_tile(tile[j][i].type, j, i)
+                    collide_check = True
+    if not collide_check:   #stickman.crash_tile이 안불렸다면
+        stickman.crash = False  #stickman.crash 초기화
 
     if(stickman.opacify == 0):
         game_framework.change_state(title_state)
     elif(get_time() - time_past >= 10):
-        game_framework.change_state(stage_run)
+        pass
+        #game_framework.change_state(stage_run)
     if(stickman.xpos >= window_right - 50):
         load_stage()
         stickman.xpos = 700 #임시 설정

@@ -8,5 +8,5 @@ import title_state
 # fill here
 
 pico2d.open_canvas()
-game_framework.run(stage_run)
+game_framework.run(stage_return)
 pico2d.close_canvas()
