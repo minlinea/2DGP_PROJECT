@@ -77,11 +77,18 @@ class Ground:
 
     @staticmethod
     def exit(stickman, event):
+        if (event == LANDING):
+            stickman.ypos = (stickman.ypos // tile_size + 1) * tile_size
+            stickman.yspeed = 0
         pass
 
     @staticmethod
     def do(stickman):
         stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
+
+        stickman.calculation_yspeed()
+        stickman.ypos += stickman.yspeed * game_framework.frame_time
+
         if not (stickman.crash):
             stickman.xpos += stickman.xspeed * game_framework.frame_time
         stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
@@ -98,7 +105,7 @@ class Air:
     @staticmethod
     def enter(stickman, event):
         if event == JUMP:
-            if(stickman.yspeed == 0):
+            if(stickman.yspeed <= 0):
                 stickman.yspeed = jump_momentum
         elif event == RIGHT_DOWN:
             stickman.xspeed += RUN_SPEED_PPS
