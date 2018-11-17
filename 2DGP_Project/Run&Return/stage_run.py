@@ -61,20 +61,25 @@ def exit():
 
 
 def pause():
+    global stage_past_time
     stage_past_time = get_time()
     pass
 
 
 def resume():
     global tile, now_stage_num, stage_past_time
-    stage_past_time = get_time()
+
+    stage_past_time = get_time() - stage_past_time
+    
     game_world.objects = [[], []]
-    now_stage_num -= 1
     tile = [([(Tile(j, i, 'run')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
     for j in range(0, max_vertical_num, 1):
         game_world.add_objects(tile[j], 0)
-    load_stage()
     game_world.add_object(stickman, 1)
+
+    now_stage_num -= 1
+    load_stage()
+
 
 
 def update():
