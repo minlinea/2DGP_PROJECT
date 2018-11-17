@@ -20,18 +20,17 @@ choose_menu_type = {none_select : 0, resume : 1, help : 2, exit : 3}
 def enter():
     global pause_image, choose_menu
 
-    game_world.objects = [[], []]
 
     pause_image = Image(window_right // 2, window_top // 2, 0, 0, 800, 600, 'resource\pause_state\pause.png')
-    game_world.add_object(pause_image, 0)
+    game_world.add_object(pause_image, 1)
 
-    choose_menu = Image(window_right - (592+223)/2, window_top / 3, 614 * choose_menu_pivot_num,0,614,370,
+    choose_menu = Image(window_right - (592+223)/2, window_top / 3, 614 * 0,0,614,370,
                         'resource\pause_state\pause_choose_menu.png')
     game_world.add_object(choose_menu, 1)
 
 
 def exit():
-    game_world.clear()
+    game_world.all_objects()
 
 
 def update():
