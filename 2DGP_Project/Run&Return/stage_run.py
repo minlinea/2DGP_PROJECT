@@ -17,9 +17,11 @@ tile =None
 now_stage_num = 0
 max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
+window_left, window_bottom = 0, 0
 stage_past_time = 0
 limit_time = 30
 font = None
+
 
 
 
@@ -92,9 +94,9 @@ def update():
         game_framework.change_state(title_state)
     elif(limit_time - (get_time() - stage_past_time) <= 0):
         game_framework.change_state(stage_return)
-    if(stickman.xpos >= window_right - 50):
+    if(stickman.xpos >= window_right - (stickman.size//2 + 1)):
         load_stage()
-        stickman.xpos = 700 #임시 설정
+        stickman.xpos = window_left + (stickman.size//2 + 1) #임시 설정
 
 def draw():
     clear_canvas()

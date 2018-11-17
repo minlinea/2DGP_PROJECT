@@ -18,8 +18,6 @@ TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 4
 
-
-stickman_size = 39
 tile_size = 40
 
 window_top, window_right = 600, 800
@@ -91,11 +89,11 @@ class Ground:
 
         if not (stickman.x_crash):
             stickman.xpos += stickman.xspeed * game_framework.frame_time
-        stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
+        stickman.xpos = clamp(0 + stickman.size//2, stickman.xpos, window_right - stickman.size//2)
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction, stickman_size, stickman_size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction, stickman.size, stickman.size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
         pass
 
@@ -146,13 +144,13 @@ class Air:
 
         if not (stickman.x_crash):
             stickman.xpos += stickman.xspeed * game_framework.frame_time
-        stickman.xpos = clamp(0 + stickman_size//2, stickman.xpos, window_right - stickman_size//2)
-        stickman.ypos = clamp(0 + stickman_size, stickman.ypos, window_top - stickman_size)
-        pass
+        stickman.xpos = clamp(0 + stickman.size//2, stickman.xpos, window_right - stickman.size//2)
+        stickman.ypos = clamp(0 + stickman.size, stickman.ypos, window_top - stickman.size)
+
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0,stickman_size, stickman_size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0,stickman.size, stickman.size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
         pass
 
@@ -181,7 +179,7 @@ class Death:
     @staticmethod
     def draw(stickman):
         stickman.image.opacify(stickman.opacify)
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0, stickman_size, stickman_size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0, stickman.size, stickman.size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
         pass
 
@@ -206,6 +204,7 @@ class Stickman:
         self.xspeed, self.yspeed = 0, 0
         self.opacify = 1.0
         self.opacify_variation = 1.0
+        self.size = 39
         self.x_crash = False
         self.jump_lock = False
         self.event_que = []
@@ -259,7 +258,7 @@ class Stickman:
         self.cur_state.draw(self)
 
     def get_bb(self):
-        return self.xpos - stickman_size//2, self.ypos - stickman_size, self.xpos + stickman_size//2, self.ypos+stickman_size
+        return self.xpos - self.size//2, self.ypos - self.size, self.xpos + self.size//2, self.ypos+self.size
 
     def add_event(self, event):
         self.event_que.insert(0, event)
