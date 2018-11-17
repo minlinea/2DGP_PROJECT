@@ -19,7 +19,7 @@ max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 window_left, window_bottom = 0, 0
 stage_past_time = 0
-limit_time = 100
+limit_time = 5
 font = None
 
 
@@ -70,7 +70,7 @@ def resume():
     global tile, now_stage_num, stage_past_time
 
     stage_past_time = get_time() - stage_past_time
-    
+
     game_world.objects = [[], []]
     tile = [([(Tile(j, i, 'run')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
     for j in range(0, max_vertical_num, 1):

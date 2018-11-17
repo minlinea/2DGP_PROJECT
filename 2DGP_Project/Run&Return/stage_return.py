@@ -3,6 +3,7 @@ import game_world
 import title_state
 import pause_state
 import stage_run
+import score_state
 from pico2d import *
 
 
@@ -59,12 +60,26 @@ def exit():
 
 
 
+
 def pause():
+    global stage_past_time
+    stage_past_time = get_time()
     pass
 
 
 def resume():
-    pass
+    global tile, now_stage_num, stage_past_time
+
+    stage_past_time = get_time() - stage_past_time
+
+    game_world.objects = [[], []]
+    tile = [([(Tile(j, i, 'run')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
+    for j in range(0, max_vertical_num, 1):
+        game_world.add_objects(tile[j], 0)
+    game_world.add_object(stickman, 1)
+
+    now_stage_num -= 1
+    load_stage()
 
 
 def update():
@@ -90,7 +105,7 @@ def update():
     if(stickman.opacify == 0):
         game_framework.change_state(title_state)
     elif(limit_time - (get_time() - stage_past_time) <= 0):
-        game_framework.change_state(title_state)
+        game_framework.change_state(score_state)
     if(stickman.xpos <= window_left + (stickman.size //2 + 1)):
         load_stage()
         stickman.xpos = window_right - (stickman.size//2 + 1) #임시 설정
@@ -115,14 +130,10 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_state(title_state)
-#------------------------------------------- 마우스 처리----------------------------------------------------#
-
-# ------------------------------------------- 마우스 처리----------------------------------------------------#
-
-# --------------------------------------- 키보드 입력 처리----------------------------------------------------#
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_p:
+            game_framework.push_state(pause_state)
         else:
             stickman.handle_event(event)
-# --------------------------------------- 키보드 입력 처리----------------------------------------------------#
 
 def collide(a, b):
     left_a, bottom_a, right_a, top_a = a.get_bb()
