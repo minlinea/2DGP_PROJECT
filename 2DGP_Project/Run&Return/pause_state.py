@@ -1,12 +1,16 @@
 import game_framework
 import stage_run
 import help_state
-from pico2d import *
+import game_world
 
+from pico2d import *
+from image import Image
 
 window_top, window_right = 600, 800
+
 pause_image = None
 choose_menu = None
+
 choose_menu_pivot_num = 0
 
 none_select, resume, help, exit = range(4)
@@ -15,26 +19,37 @@ choose_menu_type = {none_select : 0, resume : 1, help : 2, exit : 3}
 
 def enter():
     global pause_image, choose_menu
-    pause_image = load_image('resource\pause_state\pause.png')
-    choose_menu = load_image('resource\pause_state\pause_choose_menu.png')
 
+    game_world.objects = [[], []]
+
+    pause_image = Image(window_right // 2, window_top // 2, 0, 0, 800, 600, 'resource\pause_state\pause.png')
+    game_world.add_object(pause_image, 0)
+
+    choose_menu = Image(window_right - (592+223)/2, window_top / 3, 614 * choose_menu_pivot_num,0,614,370,
+                        'resource\pause_state\pause_choose_menu.png')
+    game_world.add_object(choose_menu, 1)
 
 
 def exit():
-    global pause_image, choose_menu
-    del(pause_image)
-    del(choose_menu)
+    game_world.clear()
 
 
 def update():
-    pass
+    if(choose_menu_pivot_num == none_select):
+        choose_menu.left = 614 * 0
+    elif(choose_menu_pivot_num == resume):
+        choose_menu.left = 614 * 1
+    elif (choose_menu_pivot_num == help):
+        choose_menu.left = 614 * 2
+    elif (choose_menu_pivot_num == exit):
+        choose_menu.left = 614 * 3
 
 
 def draw():
-    global pause_image, choose_menu
     clear_canvas()
-    pause_image.draw(window_right//2 ,window_top // 2)
-    choose_menu.clip_draw(614 * choose_menu_pivot_num,0,614,370,(706+91)/2, WINDOW_HEIGHT - (592+223)/2)
+
+    for game_object in game_world.all_objects():
+        game_object.draw()
     update_canvas()
 
 
@@ -48,9 +63,10 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.pop_state()
+
         elif event.type == SDL_MOUSEMOTION:
             if(event.x < 535 and event.x > 265):
-                if (window_to_pico_coordinate_system(event.y) < 358 and window_to_pico_coordinate_system(event.y) > 264):
+                if (window_to_pico_coordinate_system(event.y) < 358 and  window_to_pico_coordinate_system(event.y) > 264):
                     choose_menu_pivot_num = resume
                 elif(window_to_pico_coordinate_system(event.y) < 240 and window_to_pico_coordinate_system(event.y) > 150):
                     choose_menu_pivot_num = help
@@ -61,7 +77,7 @@ def handle_events():
                     choose_menu_pivot_num = none_select
             else:
                 choose_menu_pivot_num = none_select
-            pass
+
         elif event.type == SDL_MOUSEBUTTONDOWN:
             if (choose_menu_pivot_num == resume):
                 game_framework.pop_state()
@@ -69,10 +85,9 @@ def handle_events():
                 game_framework.push_state(help_state)
             elif (choose_menu_pivot_num ==exit):
                 game_framework.quit()
-            pass
 
 def window_to_pico_coordinate_system(num):      # pico 환경과, 윈도우 환경 마우스 좌표 값 조정 함수
-    return WINDOW_HEIGHT - 1 - num
+    return window_top - 1 - num
 
 
 

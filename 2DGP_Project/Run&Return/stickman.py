@@ -71,14 +71,12 @@ class Ground:
             pass
         stickman.yspeed = 0
         stickman.x_crash = False
-        pass
 
     @staticmethod
     def exit(stickman, event):
         if (event == LANDING):
             stickman.ypos = (stickman.ypos // tile_size + 1) * tile_size
             stickman.yspeed = 0
-        pass
 
     @staticmethod
     def do(stickman):
@@ -95,7 +93,6 @@ class Ground:
     def draw(stickman):
         stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction, stickman.size, stickman.size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
-        pass
 
 
 class Air:
@@ -125,7 +122,6 @@ class Air:
         elif event == FALL:
             pass
         stickman.x_crash = False
-        pass
 
     @staticmethod
     def exit(stickman, event):
@@ -133,7 +129,6 @@ class Air:
             stickman.ypos = (stickman.ypos // tile_size + 1) * tile_size
             stickman.yspeed = 0
             stickman.jump_lock = False
-        pass
 
     @staticmethod
     def do(stickman):

@@ -19,7 +19,7 @@ max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 window_left, window_bottom = 0, 0
 stage_past_time = 0
-limit_time = 5
+limit_time = 100
 font = None
 
 
@@ -61,6 +61,7 @@ def exit():
 
 
 def pause():
+
     pass
 
 
@@ -116,14 +117,10 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_state(title_state)
-#------------------------------------------- 마우스 처리----------------------------------------------------#
-
-# ------------------------------------------- 마우스 처리----------------------------------------------------#
-
-# --------------------------------------- 키보드 입력 처리----------------------------------------------------#
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_p:
+            game_framework.push_state(pause_state)
         else:
             stickman.handle_event(event)
-# --------------------------------------- 키보드 입력 처리----------------------------------------------------#
 
 def collide(a, b):
     left_a, bottom_a, right_a, top_a = a.get_bb()

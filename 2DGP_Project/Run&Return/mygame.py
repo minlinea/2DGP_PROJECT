@@ -5,7 +5,7 @@ import stage_run
 import stage_return
 import stage_editor
 import title_state
-# fill here
+import pause_state
 
 pico2d.open_canvas()
 game_framework.run(stage_run)
