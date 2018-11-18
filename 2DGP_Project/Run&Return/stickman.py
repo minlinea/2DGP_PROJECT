@@ -87,6 +87,7 @@ class Ground:
 
         if not (stickman.x_crash):
             stickman.xpos += stickman.xspeed * game_framework.frame_time
+            stickman.run_distance += abs(stickman.xspeed * game_framework.frame_time)
         stickman.xpos = clamp(0 + stickman.size//2, stickman.xpos, window_right - stickman.size//2)
 
     @staticmethod
@@ -139,6 +140,7 @@ class Air:
 
         if not (stickman.x_crash):
             stickman.xpos += stickman.xspeed * game_framework.frame_time
+            stickman.run_distance += abs(stickman.xspeed * game_framework.frame_time)
         stickman.xpos = clamp(0 + stickman.size//2, stickman.xpos, window_right - stickman.size//2)
         stickman.ypos = clamp(0 + stickman.size, stickman.ypos, window_top - stickman.size)
 
@@ -199,6 +201,7 @@ class Stickman:
         self.xspeed, self.yspeed = 0, 0
         self.opacify = 1.0
         self.opacify_variation = 1.0
+        self.run_distance = 0.0
         self.size = 39
         self.x_crash = False
         self.jump_lock = False
