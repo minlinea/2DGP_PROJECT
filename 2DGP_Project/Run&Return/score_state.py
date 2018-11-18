@@ -6,9 +6,12 @@ from pico2d import *
 
 from image import Image
 
+PIXEL_PER_METER = (10.0 / 0.3) # 10pixel 30cm
+
 name = "ScoreState"
 image = None
 font = None
+
 
 window_right, window_top = 800, 600
 
@@ -47,8 +50,8 @@ def draw():
     for game_object in game_world.all_objects():
         game_object.draw()
 
-    run_score = stage_return.stickman.run_distance
-    score.draw(window_right // 2, window_top //2 , 'score : [%4.2f]' % run_score, (255, 255, 255))
+    run_score = stage_return.stickman.run_distance / PIXEL_PER_METER
+    score.draw(window_right // 3, window_top //2 , 'run_distance : [%4.2f]m' % run_score, (255, 255, 255))
 
     update_canvas()
 
