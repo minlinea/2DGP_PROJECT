@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adc7d1e6-ffa6-443c-8106-9a4828ebf995" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/save_stage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/save_stage.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Run&amp;Return/game_framework.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/game_framework.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Run&amp;Return/pause_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/pause_state.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Run&amp;Return/score_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/score_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Run&amp;Return/stage_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stage_editor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Run&amp;Return/stage_return.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stage_return.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Run&amp;Return/stage_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stage_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Run&amp;Return/stickman.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stickman.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,24 +31,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="41" />
+          <entry key="gitattributes" value="1" />
+          <entry key="gitignore" value="1" />
+          <entry key="py" value="47" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="41" />
+          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="Python" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="7880" />
+          <entry key="py" value="7931" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="7880" />
+          <entry key="Python" value="7931" />
         </counts>
       </usages-collector>
     </session>
@@ -53,83 +58,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Run&amp;Return/stickman.py">
+        <entry file="file://$PROJECT_DIR$/Run&amp;Return/mygame.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-                <marker date="1542540100946" expanded="true" signature="6971:7245" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_run.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-                <marker date="1542541270805" expanded="true" signature="1430:1502" ph="..." />
-                <marker date="1542541270805" expanded="true" signature="3189:3437" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Run&amp;Return/start_state.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Run&amp;Return/tile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_return.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1197">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Run&amp;Return/score_state.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="61" column="80" selection-start-line="61" selection-start-column="80" selection-end-line="61" selection-end-column="80" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-                <marker date="1542541439430" expanded="true" signature="827:831" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_editor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="209">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -140,7 +72,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Run&amp;Return/image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="266">
               <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -150,13 +82,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Run&amp;Return/pause_state.py">
+        <entry file="file://$PROJECT_DIR$/Run&amp;Return/help_state.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
-              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="6" selection-end-column="23" />
+              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Run&amp;Return/score_state.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
               <folding>
-                <marker date="1542466381783" expanded="true" signature="389:394" ph="..." />
-                <marker date="1542466381783" expanded="true" signature="755:787" ph="..." />
+                <element signature="e#0#21#0" expanded="true" />
+                <marker date="1542545070504" expanded="true" signature="800:803" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_editor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1311">
+              <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,6 +120,43 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
               <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Run&amp;Return/game_framework.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Run&amp;Return/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Run&amp;Return/.gitattributes">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Run&amp;Return/pause_state.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+                <marker date="1542545070465" expanded="true" signature="389:394" ph="..." />
+                <marker date="1542545070465" expanded="true" signature="755:787" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -200,12 +190,13 @@
         <option value="$PROJECT_DIR$/Run&amp;Return/tile.py" />
         <option value="$PROJECT_DIR$/Run&amp;Return/image.py" />
         <option value="$PROJECT_DIR$/Run&amp;Return/mygame.py" />
-        <option value="$PROJECT_DIR$/Run&amp;Return/pause_state.py" />
-        <option value="$PROJECT_DIR$/Run&amp;Return/stage_editor.py" />
         <option value="$PROJECT_DIR$/Run&amp;Return/stickman.py" />
         <option value="$PROJECT_DIR$/Run&amp;Return/stage_run.py" />
         <option value="$PROJECT_DIR$/Run&amp;Return/stage_return.py" />
+        <option value="$PROJECT_DIR$/Run&amp;Return/stage_editor.py" />
         <option value="$PROJECT_DIR$/Run&amp;Return/score_state.py" />
+        <option value="$PROJECT_DIR$/Run&amp;Return/pause_state.py" />
+        <option value="$PROJECT_DIR$/Run&amp;Return/game_framework.py" />
       </list>
     </option>
   </component>
@@ -312,7 +303,7 @@
     <frame x="258" y="0" width="1259" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21703522" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21703522" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -325,7 +316,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.31763417" />
+      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.31763417" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -363,22 +354,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Run&amp;Return/stage_run.py</url>
-          <line>80</line>
+          <line>71</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Run&amp;Return/stage_return.py</url>
-          <line>65</line>
+          <line>58</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Run&amp;Return/stage_return.py</url>
-          <line>72</line>
+          <line>64</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Run&amp;Return/stage_return.py</url>
-          <line>74</line>
+          <line>66</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
@@ -450,54 +441,58 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/character.py" />
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/help_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/save_stage.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/game_framework.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/mygame.py">
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/stickman.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        <state relative-caret-position="2850">
+          <caret line="150" column="48" selection-start-line="150" selection-start-column="48" selection-end-line="150" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1542545070493" expanded="true" signature="6917:7190" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/start_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/image.py">
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+        <state relative-caret-position="-997">
+          <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1542545070474" expanded="true" signature="1423:1486" ph="..." />
+            <marker date="1542545070474" expanded="true" signature="3172:3420" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_return.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1073">
+          <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/pause_state.py">
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/title_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="6" selection-end-column="23" />
+        <state>
           <folding>
-            <marker date="1542466381783" expanded="true" signature="389:394" ph="..." />
-            <marker date="1542466381783" expanded="true" signature="755:787" ph="..." />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/game_world.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -513,62 +508,85 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_editor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="1311">
+          <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/start_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/stickman.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <marker date="1542540100946" expanded="true" signature="6971:7245" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <marker date="1542541270805" expanded="true" signature="1430:1502" ph="..." />
-            <marker date="1542541270805" expanded="true" signature="3189:3437" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_return.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1197">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/score_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="61" column="80" selection-start-line="61" selection-start-column="80" selection-end-line="61" selection-end-column="80" />
+        <state relative-caret-position="608">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
-            <marker date="1542541439430" expanded="true" signature="827:831" ph="..." />
+            <marker date="1542545070504" expanded="true" signature="800:803" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/pause_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1542545070465" expanded="true" signature="389:394" ph="..." />
+            <marker date="1542545070465" expanded="true" signature="755:787" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/mygame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/help_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/game_world.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/game_framework.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/.gitattributes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>

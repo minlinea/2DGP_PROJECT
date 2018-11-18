@@ -18,6 +18,7 @@ max_vertical_num, max_horizontal_num = 15, 20
 
 tile_choose_place = [(30,218),(90,218), (30,156),(90,156) , (30,93),(90,93),(30,32),(90,32)]
 tile_choose_num = 0
+tile_size = 40
 save_count = 0
 load_count = 0
 click = False
@@ -67,7 +68,6 @@ def draw():
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
-
     update_canvas()
 
 
@@ -87,34 +87,33 @@ def handle_events():
         elif event.type == SDL_KEYDOWN:
             event_KEYDOWN(event.key)
 
-#-------------------------------------------------마우스 처리관련-------------------------------------------------#
+
 def event_MOUSE(type, x, y, click, tile_type):      # 마우스 처리
     if type == SDL_MOUSEBUTTONDOWN:  # 클릭 시 해당지점 타일 배치
         click = True
         collocate_tile(tile_type, x, y)
     elif type == SDL_MOUSEMOTION and click == True:  # 누른채로 이동하면 해당 이동 구역 전부 타일 배치
         collocate_tile(tile_type, x, y)
-
     elif type == SDL_MOUSEBUTTONUP:
         click = False  # 마우스 버튼 뗀 순간 마우스모션과 연계 안되게끔
     return click
 
+
 def collocate_tile(tile_type, mouse_x, mouse_y):     # 마우스 값을 입력 받아 해당된 곳에, 현재 설정된 타일 배치
     global tile
-    i = (mouse_x) // 40
-    j = (mouse_y) // 40
+    i = (mouse_x) // tile_size
+    j = (mouse_y) // tile_size
     tile[j][i].type = tile_type
+
 
 def window_to_pico_coordinate_system(num):      # pico 환경과, 윈도우 환경 마우스 좌표 값 조정 함수
     return WINDOW_HEIGHT - 1 - num
-#-------------------------------------------------마우스 처리관련-------------------------------------------------#
 
-#-------------------------------------------------키보드 처리관련-------------------------------------------------#
+
 def event_KEYDOWN(key):         # 키보드 처리
     global tile_information_kind, tile_choose_num
     if key == SDLK_1:  # 왼쪽 1번째줄 타일 셋
         tile_choose_num = 0
-
     elif key == SDLK_2:  # 오른쪽 1번째줄 타일 셋
         tile_choose_num = 1
     elif key == SDLK_3:  # 왼쪽 2번째줄 타일 셋
@@ -136,6 +135,7 @@ def event_KEYDOWN(key):         # 키보드 처리
     elif key == SDLK_r:  # 모든 타일 빈타일로 초기화
         clear_stage()
     tile_choose.x, tile_choose.y = tile_choose_place[tile_choose_num][0], tile_choose_place[tile_choose_num][1]
+
 
 def save_stage():           # 현재까지 그린 정보 저장
     global tile, save_count
@@ -164,7 +164,6 @@ def clear_stage():          # 타일 초기화, 모든 타일을 빈타일로 �
             tile[j][i].type = 0
 
 
-
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, load_count
     file = open("save_stage.txt", 'r')
@@ -174,12 +173,7 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
         line = file.readline()
         for i in range(0, 20, 1):
             tile[j][i].type = int(line[i:i + 1])
-
     line = file.readline()
     if line:
         load_count += 1
     file.close()
-
-
-#-------------------------------------------------키보드 처리관련-------------------------------------------------#
-#----------------------------------------핸들 이벤트---------------------------------------------#

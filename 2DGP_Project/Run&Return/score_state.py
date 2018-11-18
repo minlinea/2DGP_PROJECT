@@ -10,14 +10,9 @@ from image import Image
 PIXEL_PER_METER = (10.0 / 0.3) # 10pixel 30cm
 
 name = "ScoreState"
-image = None
-font = None
-
-
 window_right, window_top = 800, 600
 
 scoreboard = None
-
 score = None
 pass_run_stage = None
 pass_return_stage = None
@@ -35,9 +30,9 @@ def enter():
                         'resource\\score_state\\score_board.png')
     game_world.add_object(scoreboard,0)
 
+
 def exit():
     game_world.clear()
-
 
 
 def handle_events():
@@ -52,7 +47,6 @@ def handle_events():
 
 def draw():
     clear_canvas()
-
     for game_object in game_world.all_objects():
         game_object.draw()
 

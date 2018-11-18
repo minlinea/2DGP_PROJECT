@@ -149,7 +149,6 @@ class Air:
     def draw(stickman):
         stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0,stickman.size, stickman.size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
-        pass
 
 
 class Death:
@@ -158,7 +157,6 @@ class Death:
     def enter(stickman, event):
         stickman.xspeed = 0
         stickman.yspeed = 0
-        pass
 
     @staticmethod
     def exit(stickman, event):
@@ -171,14 +169,12 @@ class Death:
             stickman.opacify -= stickman.opacify_variation
         else:
             stickman.opacify = 0
-        pass
 
     @staticmethod
     def draw(stickman):
         stickman.image.opacify(stickman.opacify)
         stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0, stickman.size, stickman.size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
-        pass
 
 
 
@@ -194,7 +190,7 @@ next_state_table = {
 
 class Stickman:
     def __init__(self):
-        self.xpos, self.ypos = 150, 280+1
+        self.xpos, self.ypos = 150, 280
         self.frame = 0
         self.image = load_image('resource\\character\\animation_sheet_demo.png')
         self.direction = right
@@ -221,7 +217,6 @@ class Stickman:
 
     def calculation_yspeed(self):
         self.yspeed = self.yspeed - jump_momentum_reduction
-
         if(self.yspeed <= -jump_momentum and self.cur_state == Air):
             self.yspeed = -jump_momentum
         elif (self.cur_state == Ground and self.yspeed <=-2):
@@ -237,20 +232,17 @@ class Stickman:
         elif (tile_type == block):
             if (i == stickman_x + 1 and (j == stickman_y or j == stickman_y-1)):
                 stickman_x_interval = self.xpos - (stickman_x)* tile_size-1
-                self.xpos = (stickman_x) * 40 + stickman_x_interval
+                self.xpos = (stickman_x) * tile_size + stickman_x_interval
                 self.x_crash = True
             elif (i == stickman_x - 1 and (j == stickman_y or j == stickman_y-1)):
                 stickman_x_interval = self.xpos - (stickman_x) * tile_size+1
-                self.xpos = (stickman_x) * 40 + stickman_x_interval
+                self.xpos = (stickman_x) * tile_size + stickman_x_interval
                 self.x_crash = True
             elif (j== stickman_y + 1 and i == stickman_x) and self.yspeed >0:
                 self.yspeed = -self.yspeed
-                self.ypos = (self.ypos // 40) * 40
+                self.ypos = (self.ypos // tile_size) * tile_size
             elif ((j== stickman_y - 1 and i == stickman_x) and self.yspeed <=0):
                 self.add_event(LANDING)
-
-
-
 
     def draw(self):
         self.cur_state.draw(self)

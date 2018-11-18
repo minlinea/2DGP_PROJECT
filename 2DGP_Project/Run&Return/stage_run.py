@@ -3,10 +3,8 @@ import game_world
 import title_state
 import pause_state
 import stage_return
+
 from pico2d import *
-
-
-
 from stickman import Stickman
 from tile import Tile
 
@@ -22,9 +20,6 @@ stage_past_time = 0
 limit_time = 10
 font = None
 
-
-
-
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
     file = open("save_stage.txt", 'r')
@@ -34,12 +29,10 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
         line = file.readline()
         for i in range(0, max_horizontal_num, 1):
             tile[j][i].type = int(line[i:i + 1])
-
     line = file.readline()
     if line:
         now_stage_num += 1
     file.close()
-
 
 
 def enter():
@@ -63,12 +56,10 @@ def exit():
 def pause():
     global stage_past_time
     stage_past_time = get_time()
-    pass
 
 
 def resume():
     global tile, now_stage_num, stage_past_time
-
     stage_past_time = get_time() - stage_past_time
 
     game_world.objects = [[], []]

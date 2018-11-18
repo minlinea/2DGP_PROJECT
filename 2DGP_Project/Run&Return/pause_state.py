@@ -52,8 +52,6 @@ def draw():
     update_canvas()
 
 
-
-
 def handle_events():
     global choose_menu_pivot_num
     events = get_events()
@@ -85,9 +83,9 @@ def handle_events():
             elif (choose_menu_pivot_num ==exit):
                 game_framework.quit()
 
+
 def window_to_pico_coordinate_system(num):      # pico 환경과, 윈도우 환경 마우스 좌표 값 조정 함수
     return window_top - 1 - num
-
 
 
 def pause(): pass
