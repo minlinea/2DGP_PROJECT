@@ -19,7 +19,7 @@ now_stage_num = 0
 max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 window_left, window_bottom = 0,0
-limit_time = 5
+limit_time = 10
 stage_past_time = 0
 
 font = None
@@ -46,7 +46,7 @@ def enter():
     font = load_font('ENCR10B.TTF', 32)
     stage_past_time = get_time()
     game_world.objects = [[], []]
-    now_stage_num = 0
+    now_stage_num = stage_run.now_stage_num - 1
     stickman = stage_run.stickman
     tile = [([(Tile(j,i,'return')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
     for j in range(0, max_vertical_num, 1):
