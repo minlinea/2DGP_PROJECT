@@ -111,8 +111,9 @@ def draw():
     for game_object in game_world.all_objects():
         game_object.draw()
 
-    time = limit_time - (get_time() - stage_past_time)
-    font.draw(window_right - 80, 30, '[%2.0f]' % time, (255, 255, 255))
+    if (stickman.opacify >= 1):
+        time = limit_time - (get_time() - stage_past_time)
+        font.draw(window_right - 80, 30, '[%2.0f]' % time, (255, 255, 255))
 
     update_canvas()
 
