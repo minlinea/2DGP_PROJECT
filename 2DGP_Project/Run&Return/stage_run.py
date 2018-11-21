@@ -93,13 +93,17 @@ def update():
     if not collide_check:   #stickman.crash_tile이 안불렸다면
         stickman.crash = False  #stickman.crash 초기화
 
-    if(stickman.opacify == 0):
-        game_framework.change_state(title_state)
-    elif(limit_time - (get_time() - stage_past_time) <= 0):
-        game_framework.change_state(stage_return)
-    if(stickman.xpos >= window_right - (stickman.size//2 + 1)):
-        load_stage()
-        stickman.xpos = window_left + (stickman.size//2 + 1) #임시 설정
+    if(stickman.opacify >= 1):
+        if (limit_time - (get_time() - stage_past_time) <= 0):
+            game_framework.change_state(stage_return)
+        elif (stickman.xpos >= window_right - (stickman.size // 2 + 1)):
+            load_stage()
+            stickman.xpos = window_left + (stickman.size // 2 + 1)
+    else:
+        if(stickman.opacify == 0):
+            game_framework.change_state(title_state)
+
+
 
 def draw():
     clear_canvas()
