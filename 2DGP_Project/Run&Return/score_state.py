@@ -16,10 +16,11 @@ scoreboard = None
 score = None
 pass_run_stage = None
 pass_return_stage = None
-
+return_main_menu = None
+game_exit = None
 
 def enter():
-    global scoreboard, score, pass_run_stage, pass_return_stage
+    global scoreboard, score, pass_run_stage, pass_return_stage, return_main_menu, game_exit
 
     game_world.objects = [[], []]
 
@@ -30,6 +31,13 @@ def enter():
                         'resource\\score_state\\score_board.png')
     game_world.add_object(scoreboard,0)
 
+    return_main_menu = Image(window_right/2 - 200, window_top / 6, 270 * 0, 0, 270 - 1, 86,
+                        'resource\\score_state\\return_main_menu.png')
+    game_world.add_object(return_main_menu, 1)
+
+    game_exit = Image(window_right/2 + 200, window_top / 6, 270 * 0, 0, 270 - 1, 86,
+                        'resource\\score_state\\game_exit.png')
+    game_world.add_object(game_exit, 1)
 
 def exit():
     game_world.clear()
@@ -51,13 +59,13 @@ def draw():
         game_object.draw()
 
     pass_run_stage_num = stage_run.now_stage_num - 1
-    pass_run_stage.draw(window_right // 4, window_top * 3 // 4, 'pass_run_stage : [%2.0f]' %pass_run_stage_num, (255, 255, 255))
+    pass_run_stage.draw(window_right // 5, window_top * 4 // 5, 'pass_run_stage : [%2.0f]' %pass_run_stage_num, (255, 255, 255))
 
     pass_return_stage_num = stage_return.now_stage_num - stage_run.now_stage_num
-    pass_return_stage.draw(window_right // 4, window_top * 2 // 4, 'pass_return_stage : [%2.0f]' % pass_return_stage_num, (255, 255, 255))
+    pass_return_stage.draw(window_right // 5, window_top * 3 // 5, 'pass_return_stage : [%2.0f]' % pass_return_stage_num, (255, 255, 255))
 
     run_score = stage_return.stickman.run_distance / PIXEL_PER_METER
-    score.draw(window_right // 4, window_top //4 , 'run_distance : [%4.2f]m' % run_score, (255, 255, 255))
+    score.draw(window_right // 5, window_top * 2 //5 , 'run_distance : [%4.2f]m' % run_score, (255, 255, 255))
 
     update_canvas()
 

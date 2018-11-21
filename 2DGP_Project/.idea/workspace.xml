@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adc7d1e6-ffa6-443c-8106-9a4828ebf995" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/game_framework.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/game_framework.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/pause_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/pause_state.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/score_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/score_state.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/stage_editor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stage_editor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/stage_return.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stage_return.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/stage_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stage_run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Run&amp;Return/stickman.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run&amp;Return/stickman.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,13 +14,13 @@
     <session id="-563329541">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.4" value="11" />
+          <entry key="project.open.time.4" value="12" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="2" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -60,7 +54,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Run&amp;Return/mygame.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
+            <state relative-caret-position="76">
               <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -72,7 +66,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Run&amp;Return/image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
+            <state relative-caret-position="228">
               <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -93,7 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Run&amp;Return/score_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
+            <state relative-caret-position="950">
               <caret line="57" selection-start-line="57" selection-end-line="57" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -106,7 +100,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_editor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1311">
+            <state relative-caret-position="1178">
               <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -127,8 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Run&amp;Return/game_framework.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+            <state relative-caret-position="2147">
+              <caret line="113" selection-start-line="113" selection-end-line="113" />
             </state>
           </provider>
         </entry>
@@ -150,8 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Run&amp;Return/pause_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="532">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
                 <marker date="1542545070465" expanded="true" signature="389:394" ph="..." />
@@ -211,22 +205,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="2DGP_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="2DGP_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="Run&amp;Return" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -238,6 +216,22 @@
               <item name="2DGP_Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="2DGP_Project" type="462c0819:PsiDirectoryNode" />
               <item name="Run&amp;Return" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="2DGP_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="2DGP_Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Run&amp;Return" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -266,6 +260,9 @@
       <module name="2DGP_Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="C:\Users\msi\AppData\Local\Programs\Python\Python37\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Run&amp;Return" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -303,7 +300,7 @@
     <frame x="258" y="0" width="1259" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21703522" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21703522" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -316,7 +313,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.31763417" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.31763417" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -448,10 +445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2850">
           <caret line="150" column="48" selection-start-line="150" selection-start-column="48" selection-end-line="150" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <marker date="1542545070493" expanded="true" signature="6917:7190" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -459,9 +452,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-57">
           <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -488,60 +478,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/title_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/tile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_editor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/score_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <marker date="1542545070504" expanded="true" signature="800:803" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Run&amp;Return/pause_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-            <marker date="1542545070465" expanded="true" signature="389:394" ph="..." />
-            <marker date="1542545070465" expanded="true" signature="755:787" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/mygame.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="76">
           <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -551,7 +499,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
+        <state relative-caret-position="228">
           <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -566,6 +514,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/score_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1542545070504" expanded="true" signature="800:803" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/stage_editor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1178">
+          <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/game_world.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -575,13 +544,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/game_framework.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+        <state relative-caret-position="2147">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run&amp;Return/pause_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1542545070465" expanded="true" signature="389:394" ph="..." />
+            <marker date="1542545070465" expanded="true" signature="755:787" ph="..." />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Run&amp;Return/.gitattributes">
       <provider selected="true" editor-type-id="text-editor">
