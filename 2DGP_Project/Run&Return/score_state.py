@@ -19,8 +19,15 @@ pass_return_stage = None
 return_main_menu = None
 game_exit = None
 
+choose_menu_pivot_num = 0
+
+none_select, return_main, exit = range(3)
+choose_menu_type = {none_select : 0, return_main : 1, exit : 2}
+
 def enter():
     global scoreboard, score, pass_run_stage, pass_return_stage, return_main_menu, game_exit
+
+    choose_menu_pivot_num = 0
 
     game_world.objects = [[], []]
 
@@ -44,13 +51,28 @@ def exit():
 
 
 def handle_events():
+    global choose_menu_pivot_num
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
-        else:
-            if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
+        elif event.type == SDL_MOUSEMOTION:
+            mouse_pos = event.x, window_to_pico_coordinate_system(event.y)
+            return_image_pos = return_main_menu.x, return_main_menu.y
+            exit_image_pos = game_exit.x, game_exit.y
+            if(collide(return_image_pos, mouse_pos)):
+                choose_menu_pivot_num = return_main
+            elif (collide(exit_image_pos, mouse_pos)):
+                choose_menu_pivot_num = exit
+            else:
+                choose_menu_pivot_num = none_select
+
+
+        elif event.type == SDL_MOUSEBUTTONDOWN:
+            if (choose_menu_pivot_num == return_main):
                 game_framework.change_state(title_state)
+            elif (choose_menu_pivot_num == exit):
+                game_framework.quit()
 
 
 def draw():
@@ -71,7 +93,13 @@ def draw():
 
 
 def update():
-    pass
+    if(choose_menu_pivot_num == none_select):
+        return_main_menu.left = (270 - 1) * 0
+        game_exit.left = (270 - 1) * 0
+    elif(choose_menu_pivot_num == return_main):
+        return_main_menu.left = (270-1) * 1
+    elif (choose_menu_pivot_num == exit):
+        game_exit.left = (270-1) * 1
 
 
 def pause():
@@ -82,7 +110,17 @@ def resume():
     pass
 
 
+def collide(a, b):
+    left_a,bottom_a, right_a, top_a  = int(a[0] - 270//2), int(a[1] - 86//2), int(a[0] + 270//2),int(a[1] + 86//2)
+    left_b, bottom_b, right_b, top_b = int(b[0] - 5), int(b[1] - 5), int(b[0] +5), int(b[1] + 5)
 
+    if left_a > right_b: return False
+    if right_a < left_b: return False
+    if top_a < bottom_b: return False
+    if bottom_a > top_b: return False
+    return True
 
+def window_to_pico_coordinate_system(num):      # pico 환경과, 윈도우 환경 마우스 좌표 값 조정 함수
+    return window_top - 1 - num
 
 
