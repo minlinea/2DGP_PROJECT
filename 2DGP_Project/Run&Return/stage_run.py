@@ -126,10 +126,11 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_state(title_state)
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_p:
-            game_framework.push_state(pause_state)
-        else:
-            stickman.handle_event(event)
+        if(stickman.opacify >=1):
+            if event.type == SDL_KEYDOWN and event.key == SDLK_p:
+                game_framework.push_state(pause_state)
+            else:
+                stickman.handle_event(event)
 
 def collide(a, b):
     left_a, bottom_a, right_a, top_a = a.get_bb()
