@@ -68,8 +68,6 @@ def resume():
     game_world.add_object(stickman, 1)
 
     stickman.xspeed = 0
-    
-    now_stage_num -= 1
     load_stage()
 
 

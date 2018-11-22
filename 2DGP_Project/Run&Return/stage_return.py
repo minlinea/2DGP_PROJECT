@@ -42,7 +42,7 @@ def enter():
     font = load_font('ENCR10B.TTF', 32)
     stage_past_time = get_time()
     game_world.objects = [[], []]
-    now_stage_num = stage_run.now_stage_num - 1
+    now_stage_num = stage_run.now_stage_num
     stickman = stage_run.stickman
     tile = [([(Tile(j,i,'return')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
     for j in range(0, max_vertical_num, 1):
@@ -69,8 +69,8 @@ def resume():
         game_world.add_objects(tile[j], 0)
     game_world.add_object(stickman, 1)
     stickman.xspeed = 0
-    now_stage_num -= 1
     load_stage()
+
 
 
 def update():
@@ -97,9 +97,9 @@ def update():
         if (limit_time - (get_time() - stage_past_time) <= 0):
             game_framework.change_state(score_state)
 
-        elif (stickman.xpos >= window_right - (stickman.size // 2 + 1)):
+        elif (stickman.xpos <= window_left + (stickman.size // 2)):
             load_stage()
-            stickman.xpos = window_left + (stickman.size // 2 + 1)
+            stickman.xpos = window_right - (stickman.size // 2)
     else:
         if (stickman.opacify == 0):
             game_framework.change_state(title_state)
