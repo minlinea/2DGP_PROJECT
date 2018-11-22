@@ -30,8 +30,7 @@ def enter():
 
 
 def exit():
-    game_world.all_objects()
-
+    game_world.clear()
 
 def update():
     if(choose_menu_pivot_num == none_select):

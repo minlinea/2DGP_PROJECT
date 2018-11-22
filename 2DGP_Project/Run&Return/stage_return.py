@@ -55,8 +55,7 @@ def exit():
     game_world.clear()
 
 def pause():
-    global stage_past_time
-    stage_past_time = get_time()
+    pass
 
 
 def resume():

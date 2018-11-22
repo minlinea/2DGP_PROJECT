@@ -54,13 +54,12 @@ def exit():
 
 
 def pause():
-    global stage_past_time
-    stage_past_time = get_time()
-
+    pass
 
 def resume():
     global tile, now_stage_num, stage_past_time
-    stage_past_time = get_time() - stage_past_time
+    time = get_time()
+    stage_past_time =  time - stage_past_time
 
     game_world.objects = [[], []]
     tile = [([(Tile(j, i, 'run')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
@@ -96,6 +95,7 @@ def update():
     if(stickman.opacify >= 1):
         if (limit_time - (get_time() - stage_past_time) <= 0):
             game_framework.change_state(stage_return)
+
         elif (stickman.xpos >= window_right - (stickman.size // 2 + 1)):
             load_stage()
             stickman.xpos = window_left + (stickman.size // 2 + 1)
@@ -127,6 +127,7 @@ def handle_events():
         if (stickman.opacify >= 1):
             if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.push_state(pause_state)
+
             else:
                 stickman.handle_event(event)
 
