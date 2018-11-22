@@ -17,7 +17,7 @@ max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 window_left, window_bottom = 0, 0
 stage_past_time = 0
-limit_time = 12
+limit_time = 3
 font = None
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
