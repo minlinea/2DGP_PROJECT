@@ -68,7 +68,7 @@ def resume():
     for j in range(0, max_vertical_num, 1):
         game_world.add_objects(tile[j], 0)
     game_world.add_object(stickman, 1)
-
+    stickman.xspeed = 0
     now_stage_num -= 1
     load_stage()
 
