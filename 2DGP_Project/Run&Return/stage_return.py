@@ -17,7 +17,7 @@ now_stage_num = 0
 max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 window_left, window_bottom = 0,0
-limit_time = 3
+limit_time = 13
 stage_past_time = 0
 
 font = None
@@ -123,10 +123,8 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.change_state(title_state)
         if (stickman.opacify >= 1):
-            if event.type == SDL_KEYDOWN and event.key == SDLK_p:
+            if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.push_state(pause_state)
             else:
                 stickman.handle_event(event)
