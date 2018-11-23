@@ -7,7 +7,7 @@ import stage_return
 from pico2d import *
 from stickman import Stickman
 from tile import Tile
-
+from music import BGM
 name = "StageRun"
 
 stickman =None
@@ -19,6 +19,8 @@ window_left, window_bottom = 0, 0
 stage_past_time = 0
 limit_time = 3
 font = None
+backgroundmusic = None
+
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
@@ -36,7 +38,7 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 
 
 def enter():
-    global stickman, tile, now_stage_num, stage_past_time, font
+    global stickman, tile, now_stage_num, stage_past_time, font, backgroundmusic
     font = load_font('ENCR10B.TTF', 32)
     stage_past_time = get_time()
     game_world.objects = [[], []]
@@ -47,7 +49,7 @@ def enter():
             game_world.add_objects(tile[j], 0)
     load_stage()
     game_world.add_object(stickman, 1)
-
+    backgroundmusic = BGM()
 
 def exit():
     game_world.clear()
