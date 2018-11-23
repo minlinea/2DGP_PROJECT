@@ -21,7 +21,6 @@ limit_time = 3
 font = None
 backgroundmusic = None
 
-
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
     file = open("save_stage.txt", 'r')
@@ -49,10 +48,11 @@ def enter():
             game_world.add_objects(tile[j], 0)
     load_stage()
     game_world.add_object(stickman, 1)
-    backgroundmusic = BGM()
+    backgroundmusic = BGM("stage")
 
 def exit():
     game_world.clear()
+    backgroundmusic.stop()
 
 
 def pause():
