@@ -3,6 +3,7 @@ import game_world
 import title_state
 import pause_state
 import stage_return
+import random
 
 from pico2d import *
 from stickman import Stickman
@@ -17,19 +18,23 @@ max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 window_left, window_bottom = 0, 0
 stage_past_time = 0
-limit_time = 3
+limit_time = 10
 font = None
 backgroundmusic = None
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
     file = open("save_stage.txt", 'r')
+    rand_stage = random.randint(0, 4)
+    horizon_count = 0
     for load_temp in range(0, max_vertical_num * now_stage_num, 1):
         line = file.readline()
     for j in range(0, max_vertical_num, 1):
         line = file.readline()
-        for i in range(0, max_horizontal_num, 1):
-            tile[j][i].type = int(line[i:i + 1])
+        for i in range(rand_stage * max_horizontal_num, (rand_stage+1) * max_horizontal_num, 1):
+            tile[j][horizon_count].type = int(line[i:i + 1])
+            horizon_count += 1
+        horizon_count = 0
     line = file.readline()
     if line:
         now_stage_num += 1

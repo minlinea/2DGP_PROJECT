@@ -26,12 +26,16 @@ font = None
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
     file = open("save_stage.txt", 'r')
+    rand_stage = random.randint(0, 4)
+    horizon_count = 0
     for load_temp in range(0, max_vertical_num * now_stage_num, 1):
         line = file.readline()
     for j in range(0, max_vertical_num, 1):
         line = file.readline()
-        for i in range(0, max_horizontal_num, 1):
-            tile[j][i].type = int(line[i:i + 1])
+        for i in range(rand_stage * max_horizontal_num, (rand_stage+1) * max_horizontal_num, 1):
+            tile[j][horizon_count].type = int(line[i:i + 1])
+            horizon_count += 1
+        horizon_count = 0
     line = file.readline()
     if line:
         now_stage_num += 1
