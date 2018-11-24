@@ -42,7 +42,7 @@ key_event_table = {
     (SDL_KEYDOWN, SDLK_DOWN): INSTANT_DOWN,
 }
 
-left, right = range(2)
+right, left  = range(2)
 direction = {left : 0, right : 1}
 empty_space, block, thorn = range(3)
 tile_type = {empty_space : 0, block : 1, thorn : 4}
@@ -92,7 +92,7 @@ class Ground:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction, stickman.size, stickman.size * 2, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2, stickman.size, stickman.size * 2, stickman.xpos,
                                   stickman.ypos)
 
 
@@ -148,7 +148,7 @@ class Air:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0,stickman.size, stickman.size * 2, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2,stickman.size, stickman.size * 2, stickman.xpos,
                                   stickman.ypos)
 
 
@@ -175,7 +175,7 @@ class Death:
     @staticmethod
     def draw(stickman):
         stickman.image.opacify(stickman.opacify)
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0, stickman.size, stickman.size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2, stickman.size, stickman.size * 2 - 1, stickman.xpos,
                                   stickman.ypos)
 
 
@@ -212,6 +212,9 @@ class Stickman:
 
     def play_jump_sound(self):
         self.jump_sound.play()
+
+    def play_landing_sound(self):
+        self.landing_sound.play()
 
     def play_death_sound(self):
         self.death_sound.play()

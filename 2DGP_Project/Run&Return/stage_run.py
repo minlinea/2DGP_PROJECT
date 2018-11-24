@@ -25,7 +25,7 @@ backgroundmusic = None
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
     file = open("save_stage.txt", 'r')
-    rand_stage = random.randint(0, 4)
+    rand_stage = random.randint(0, 3)
     horizon_count = 0
     for load_temp in range(0, max_vertical_num * now_stage_num, 1):
         line = file.readline()
