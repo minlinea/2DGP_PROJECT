@@ -40,16 +40,20 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 
 def enter():
     global stickman, tile, now_stage_num, stage_past_time, font, backgroundmusic
+
     font = load_font('ENCR10B.TTF', 32)
+
     stage_past_time = get_time()
-    game_world.objects = [[], []]
+
     now_stage_num = stage_run.now_stage_num
     stickman = stage_run.stickman
-    tile = [([(Tile(j,i,'return')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
-    for j in range(0, max_vertical_num, 1):
-            game_world.add_objects(tile[j], 0)
-    load_stage()
-    game_world.add_object(stickman, 1)
+    stickman.image = load_image('resource\\character\\stage_return_animation_sheet.png')
+
+    tile = stage_run.tile
+    for i in range(max_vertical_num):
+        for j in range(max_horizontal_num):
+            tile[i][j].image = load_image('resource\\tile\\stage_return_tile_kind.png')
+
     backgroundmusic = BGM("stage")
 
 def exit():

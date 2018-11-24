@@ -51,7 +51,6 @@ def enter():
     backgroundmusic = BGM("stage")
 
 def exit():
-    game_world.clear()
     backgroundmusic.stop()
 
 

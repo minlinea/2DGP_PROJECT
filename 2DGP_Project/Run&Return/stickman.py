@@ -14,10 +14,10 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 # Boy Action Speed
 # fill expressions correctly
-TIME_PER_ACTION = 0.5
+TIME_PER_ACTION = 1
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-FRAMES_PER_ACTION = 4
-
+FRAMES_PER_ACTION = 8
+STICKMAN_FRAME = 7
 tile_size = 40
 
 window_top, window_right = 600, 800
@@ -80,7 +80,7 @@ class Ground:
 
     @staticmethod
     def do(stickman):
-        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
+        stickman.frame += (FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % STICKMAN_FRAME
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
@@ -92,7 +92,7 @@ class Ground:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction, stickman.size, stickman.size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction, stickman.size, stickman.size * 2, stickman.xpos,
                                   stickman.ypos)
 
 
@@ -133,7 +133,7 @@ class Air:
 
     @staticmethod
     def do(stickman):
-        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 4
+        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % STICKMAN_FRAME
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
@@ -147,7 +147,7 @@ class Air:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0,stickman.size, stickman.size * 2 - 1, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * 0,stickman.size, stickman.size * 2, stickman.xpos,
                                   stickman.ypos)
 
 
@@ -192,7 +192,7 @@ class Stickman:
     def __init__(self):
         self.xpos, self.ypos = 150, 280
         self.frame = 0
-        self.image = load_image('resource\\character\\animation_sheet_demo.png')
+        self.image = load_image('resource\\character\\stage_run_animation_sheet.png')
         self.direction = right
         self.xspeed, self.yspeed = 0, 0
         self.opacify = 1.0
