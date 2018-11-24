@@ -104,6 +104,7 @@ class Air:
             if not (stickman.jump_lock):
                 stickman.jump_lock = True
                 stickman.yspeed = jump_momentum
+                stickman.play_jump_sound()
         elif event == RIGHT_DOWN:
             stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = right
@@ -204,6 +205,12 @@ class Stickman:
         self.event_que = []
         self.cur_state = Ground
         self.cur_state.enter(self, None)
+
+        self.jump_sound = load_wav('sound\\character\\jump.wav')
+        self.jump_sound.set_volume(64)
+
+    def play_jump_sound(self):
+        self.jump_sound.play()
 
 
     def update(self):
