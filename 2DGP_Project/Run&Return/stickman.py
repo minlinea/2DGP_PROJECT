@@ -2,7 +2,7 @@ import game_framework
 import tile
 
 from pico2d import *
-
+from music import Effect
 
 # Boy Run Speed
 # fill expressions correctly
@@ -17,7 +17,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 TIME_PER_ACTION = 1
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
-STICKMAN_FRAME = 7
+STICKMAN_FRAME = 8
 tile_size = 40
 
 window_top, window_right = 600, 800
@@ -158,6 +158,7 @@ class Death:
     def enter(stickman, event):
         stickman.xspeed = 0
         stickman.yspeed = 0
+        #stickman.play_death_sound()
 
     @staticmethod
     def exit(stickman, event):
@@ -206,12 +207,14 @@ class Stickman:
         self.cur_state = Ground
         self.cur_state.enter(self, None)
 
-        self.jump_sound = load_wav('sound\\character\\jump.wav')
-        self.jump_sound.set_volume(64)
+        self.jump_sound = Effect('jump')
+        #self.death_sound = Effect('death')
 
     def play_jump_sound(self):
         self.jump_sound.play()
 
+    def play_death_sound(self):
+        self.death_sound.play()
 
     def update(self):
         self.cur_state.do(self)

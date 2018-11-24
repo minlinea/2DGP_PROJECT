@@ -18,8 +18,11 @@ class BGM:
 
 class Effect:
 
-    def __init__(self):
-        self.effect = load_wav('pickup.wav')
+    def __init__(self, type):
+        if (type == 'death'):
+            self.effect = load_wav('sound\\character\\death.wav')
+        if(type == 'jump'):
+            self.effect = load_wav('sound\\character\\jump.wav')
         self.effect.set_volume(64)
 
     def play(self):
