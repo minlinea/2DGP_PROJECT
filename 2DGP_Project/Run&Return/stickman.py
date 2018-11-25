@@ -206,7 +206,6 @@ class Stickman:
         self.event_que = []
         self.cur_state = Ground
         self.cur_state.enter(self, None)
-
         self.jump_sound = Effect('jump')
         #self.death_sound = Effect('death')
 

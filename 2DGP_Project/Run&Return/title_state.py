@@ -1,23 +1,31 @@
 import game_framework
 import stage_run
 import stage_editor
-from pico2d import *
+import game_world
 
+from pico2d import *
 from music import BGM
+from image import Image
+
 
 name = "TitleState"
-image = None
+title = None
 backgroundmusic = None
+window_right, window_top = 800, 600
+
 
 def enter():
-    global image, backgroundmusic
-    image = load_image('resource\\title_state\\title.png')
+    global title, backgroundmusic
+    game_world.objects = [[], []]
+    title = Image(window_right // 2, window_top // 2, 0, 0, 800, 600, 'resource\\title_state\\title.png')
+    game_world.add_object(title, 0)
     backgroundmusic = BGM("title_state")
 
+
 def exit():
-    global image
-    del(image)
+    game_world.clear()
     backgroundmusic.stop()
+
 
 def handle_events():
     events = get_events()
@@ -35,28 +43,15 @@ def handle_events():
 
 def draw():
     clear_canvas()
-    image.draw(400,300)
+    for game_object in game_world.all_objects():
+        game_object.draw()
     update_canvas()
 
 
+def update():pass
 
 
+def pause():pass
 
 
-
-def update():
-    pass
-
-
-def pause():
-    pass
-
-
-def resume():
-    pass
-
-
-
-
-
-
+def resume():pass
