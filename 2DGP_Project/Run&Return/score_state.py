@@ -27,8 +27,6 @@ choose_menu_type = {none_select : 0, return_main : 1, exit : 2}
 def enter():
     global scoreboard, score, pass_run_stage, pass_return_stage, return_main_menu, game_exit
 
-    choose_menu_pivot_num = 0
-
     game_world.objects = [[], []]
 
     score = load_font('ENCR10B.TTF', 32)
@@ -45,6 +43,7 @@ def enter():
     game_exit = Image(window_right/2 + 200, window_top / 6, 270 * 0, 0, 270 - 1, 86,
                         'resource\\score_state\\game_exit.png')
     game_world.add_object(game_exit, 1)
+
 
 def exit():
     game_world.clear()
@@ -75,6 +74,9 @@ def handle_events():
                 game_framework.quit()
 
 
+def window_to_pico_coordinate_system(num):      # pico 환경과, 윈도우 환경 마우스 좌표 값 조정 함수
+    return window_top - 1 - num
+
 def draw():
     clear_canvas()
     for game_object in game_world.all_objects():
@@ -102,12 +104,10 @@ def update():
         game_exit.left = (270-1) * 1
 
 
-def pause():
-    pass
+def pause(): pass
 
 
-def resume():
-    pass
+def resume(): pass
 
 
 def collide(a, b):
@@ -119,8 +119,3 @@ def collide(a, b):
     if top_a < bottom_b: return False
     if bottom_a > top_b: return False
     return True
-
-def window_to_pico_coordinate_system(num):      # pico 환경과, 윈도우 환경 마우스 좌표 값 조정 함수
-    return window_top - 1 - num
-
-

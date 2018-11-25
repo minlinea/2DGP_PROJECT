@@ -16,6 +16,7 @@ class BGM:
     def stop(self):
         self.bgm.stop()
 
+
 class Effect:
 
     def __init__(self, type):

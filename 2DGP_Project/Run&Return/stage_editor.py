@@ -1,11 +1,11 @@
 import game_framework
 import game_world
 import title_state
+
 from pico2d import *
-
-
 from tile import Tile
 from image import Image
+
 
 tile = None
 tile_kind = None
@@ -15,6 +15,7 @@ imposible_collocate_right = None
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
 max_vertical_num, max_horizontal_num = 15, 20
+
 
 tile_choose_place = [(30,218),(90,218), (30,156),(90,156) , (30,93),(90,93),(30,32),(90,32)]
 tile_choose_num = 0
@@ -26,6 +27,7 @@ click = False
 
 def enter():
     global tile, tile_kind, tile_choose, imposible_collocate_left, imposible_collocate_right
+
     game_world.objects = [[], []]
 
     tile = [([(Tile(j, i, 'editor')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
@@ -39,7 +41,6 @@ def enter():
     imposible_collocate_right = Image(WINDOW_WIDTH - (120 / 2), (400 / 2), 0, 0, 120, 400, 'resource\\tile\imposible_collocate.png')
     game_world.add_object(imposible_collocate_right, 1)
 
-
     tile_kind = Image((120 / 2), (250 / 2), 0, 0, 120, 250, 'resource\\tile\\tile_kind.png')
     game_world.add_object(tile_kind, 1)
 
@@ -52,16 +53,13 @@ def exit():
     game_world.clear()
 
 
-def pause():
-    pass
+def pause(): pass
 
 
-def resume():
-    pass
+def resume(): pass
 
 
-def update():
-    pass
+def update(): pass
 
 
 def draw():
@@ -83,7 +81,6 @@ def handle_events():
                 event.type == SDL_MOUSEMOTION and click == True) or event.type == SDL_MOUSEBUTTONUP:
             mouse_xpos, mouse_ypos = event.x, window_to_pico_coordinate_system(event.y)
             click = event_MOUSE(event.type, mouse_xpos, mouse_ypos, click, tile_choose_num)
-
         elif event.type == SDL_KEYDOWN:
             event_KEYDOWN(event.key)
 

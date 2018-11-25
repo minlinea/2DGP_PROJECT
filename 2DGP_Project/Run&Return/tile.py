@@ -2,6 +2,7 @@ import game_framework
 
 from pico2d import *
 
+
 class Tile:
     image = None
     size = 40
@@ -19,14 +20,14 @@ class Tile:
                 self.image = load_image('resource\\tile\\tile_kind.png')
 
 
+    def update(self): pass
 
-    def update(self):
-        pass
 
     def draw(self):
         self.image.clip_draw(1 + 2 * (self.type % 2) + (40 * (self.type % 2)),
-                             1 + 2 * (3 - (self.type // 2)) + 40 * (3 - (self.type // 2)),  #1, 43, 85, 127 41 83 125 167
-                                self.size, self.size, 20 + self.x * self.size, 20 + self.y * self.size)
+                             1 + 2 * (3 - (self.type // 2)) + 40 * (3 - (self.type // 2)),
+                            self.size, self.size, 20 + self.x * self.size, 20 + self.y * self.size)
+
 
     def get_bb(self):
         return self.x * self.size + 1, self.y * self.size + 1, (self.x + 1) * self.size - 1, (self.y + 1) * self.size - 1
