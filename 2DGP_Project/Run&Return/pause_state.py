@@ -31,7 +31,8 @@ def enter():
 
 def exit():
     global pause_time
-    game_world.clear()
+    game_world.remove_object(pause_image)
+    game_world.remove_object(choose_menu)
     pause_time = get_time() - pause_time
 
 def update():
