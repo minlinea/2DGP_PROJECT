@@ -4,7 +4,7 @@ import title_state
 import pause_state
 import stage_run
 import score_state
-
+import random
 from pico2d import *
 from stickman import Stickman
 from tile import Tile
@@ -19,9 +19,9 @@ window_top, window_right = 600, 800
 window_left, window_bottom = 0,0
 limit_time = 13
 stage_past_time = 0
-
 backgroundmusic = None
 font = None
+pause_time = 0.0
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
@@ -43,12 +43,13 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 
 
 def enter():
-    global stickman, tile, now_stage_num, stage_past_time, font, backgroundmusic
+    global stickman, tile, now_stage_num, stage_past_time, font, backgroundmusic, pause_time
 
     font = load_font('ENCR10B.TTF', 32)
 
     stage_past_time = get_time()
 
+    pause_time = stage_run.pause_time
     now_stage_num = stage_run.now_stage_num
     stickman = stage_run.stickman
     stickman.image = load_image('resource\\character\\stage_return_animation_sheet.png')
@@ -69,15 +70,16 @@ def pause():
 
 
 def resume():
-    global tile, now_stage_num, stage_past_time
+    global tile, now_stage_num, stage_past_time, pause_time
 
-    stage_past_time = get_time() - stage_past_time
+    pause_time += pause_state.pause_time
 
     game_world.objects = [[], []]
     tile = [([(Tile(j, i, 'return')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
     for j in range(0, max_vertical_num, 1):
         game_world.add_objects(tile[j], 0)
     game_world.add_object(stickman, 1)
+
     stickman.xspeed = 0
     load_stage()
 
@@ -104,7 +106,7 @@ def update():
         stickman.crash = False  #stickman.crash 초기화
 
     if (stickman.opacify >= 1):
-        if (limit_time - (get_time() - stage_past_time) <= 0):
+        if (limit_time - (get_time() - stage_past_time - pause_time) <= 0):
             game_framework.change_state(score_state)
 
         elif (stickman.xpos <= window_left + (stickman.size // 2)):
@@ -121,7 +123,7 @@ def draw():
         game_object.draw()
 
     if (stickman.opacify >= 1):
-        time = limit_time - (get_time() - stage_past_time)
+        time = limit_time - (get_time() - stage_past_time - pause_time)
         font.draw(window_right - 80, 30, '[%2.0f]' % time, (0, 0, 0))
 
     update_canvas()
@@ -135,8 +137,6 @@ def handle_events():
             game_framework.quit()
         if (stickman.opacify >= 1):
             if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-                global stage_past_time
-                stage_past_time = get_time()
                 game_framework.push_state(pause_state)
             else:
                 stickman.handle_event(event)

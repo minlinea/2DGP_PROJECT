@@ -20,6 +20,7 @@ window_left, window_bottom = 0, 0
 stage_past_time = 0
 limit_time = 10
 font = None
+pause_time = 0
 backgroundmusic = None
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
@@ -63,9 +64,9 @@ def pause():
     pass
 
 def resume():
-    global tile, now_stage_num, stage_past_time
-    time = get_time()
-    stage_past_time =  time - stage_past_time
+    global tile, now_stage_num, stage_past_time, pause_time
+
+    pause_time += pause_state.pause_time
 
     game_world.objects = [[], []]
     tile = [([(Tile(j, i, 'run')) for i in range(max_horizontal_num)]) for j in range(max_vertical_num)]
@@ -99,7 +100,7 @@ def update():
         stickman.crash = False  #stickman.crash 초기화
 
     if(stickman.opacify >= 1):
-        if (limit_time - (get_time() - stage_past_time) <= 0):
+        if (limit_time - (get_time() - stage_past_time - pause_time) <= 0):
             game_framework.change_state(stage_return)
 
         elif (stickman.xpos >= window_right - (stickman.size // 2 + 1)):
@@ -118,7 +119,7 @@ def draw():
         game_object.draw()
 
     if (stickman.opacify >= 1):
-        time = limit_time - (get_time() - stage_past_time)
+        time = limit_time - (get_time() - stage_past_time - pause_time)
         font.draw(window_right - 80, 30, '[%2.0f]' % time, (255, 255, 255))
 
     update_canvas()

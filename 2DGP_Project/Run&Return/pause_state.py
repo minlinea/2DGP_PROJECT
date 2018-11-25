@@ -10,7 +10,7 @@ window_top, window_right = 600, 800
 
 pause_image = None
 choose_menu = None
-
+pause_time = 0.0
 choose_menu_pivot_num = 0
 
 none_select, resume, help, exit = range(4)
@@ -18,9 +18,9 @@ choose_menu_type = {none_select : 0, resume : 1, help : 2, exit : 3}
 
 
 def enter():
-    global pause_image, choose_menu
+    global pause_image, choose_menu, pause_time
 
-
+    pause_time = get_time()
     pause_image = Image(window_right // 2, window_top // 2, 0, 0, 800, 600, 'resource\pause_state\pause.png')
     game_world.add_object(pause_image, 1)
 
@@ -30,7 +30,9 @@ def enter():
 
 
 def exit():
+    global pause_time
     game_world.clear()
+    pause_time = get_time() - pause_time
 
 def update():
     if(choose_menu_pivot_num == none_select):
