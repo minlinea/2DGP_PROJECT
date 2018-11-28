@@ -18,7 +18,7 @@ max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 window_left, window_bottom = 0, 0
 stage_past_time = 0
-limit_time = 10
+limit_time = 100
 font = None
 pause_time = 0
 backgroundmusic = None
@@ -84,8 +84,11 @@ def update():
     collide_check = False   #stickman.crash_tile 검사용
     for i in range(center_x_left, center_x_right + 1, 1):
         for j in range (center_y_bottom, center_y_top + 1, 1):
-            if (collide(stickman, tile[j][i])):
-                if (tile[j][i].type != 0):
+            if (collide_normal_tile(stickman, tile[j][i])):
+                if (tile[j][i].type >= 4):
+                    if (collide_thorn(stickman, tile[j][i], tile[j][i].type)):
+                        stickman.crash_tile(tile[j][i].type, j, i)
+                else:
                     stickman.crash_tile(tile[j][i].type, j, i)
                     collide_check = True
     if not collide_check:   #stickman.crash_tile이 안불렸다면
@@ -130,7 +133,7 @@ def handle_events():
             else:
                 stickman.handle_event(event)
 
-def collide(a, b):
+def collide_normal_tile(a, b):
     left_a, bottom_a, right_a, top_a = a.get_bb()
     left_b, bottom_b, right_b, top_b = b.get_bb()
 
@@ -139,3 +142,28 @@ def collide(a, b):
     if top_a < bottom_b: return False
     if bottom_a > top_b: return False
     return True
+
+def collide_thorn(a, b, type):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb()
+
+
+    if type == 4:
+        center_b = (right_b + left_b) / 2
+
+        dewl = 2 * right_a
+        dewr = 80 * (left_b//40)
+
+        templ = 2 * left_a
+        tempr = (80 * (right_b//40))
+        dew = (((top_b - bottom_b) / (center_b - left_b)) * right_a - (80 * (left_b//40)))
+        temp = -((top_b - bottom_b) / (center_b - left_b)) * left_a + (80 * (right_b//40))
+        if dew < bottom_a:    #2 * right_a + 40 * tile[x]
+            return False
+        if temp < bottom_a: #-2 * roght_a +  tile[x+1] * 40
+            return False
+        if top_a < bottom_b:
+            return False
+        return True
+    else:
+        return False

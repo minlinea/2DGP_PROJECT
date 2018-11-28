@@ -231,7 +231,7 @@ class Stickman:
         self.yspeed = self.yspeed - jump_momentum_reduction
         if(self.yspeed <= -jump_momentum and self.cur_state == Air):
             self.yspeed = -jump_momentum
-        elif (self.cur_state == Ground and self.yspeed <=-2):
+        elif (self.cur_state == Ground and self.yspeed <=-jump_momentum_reduction):
             self.add_event(FALL)
 
 

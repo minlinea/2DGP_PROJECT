@@ -30,4 +30,4 @@ class Tile:
 
 
     def get_bb(self):
-        return self.x * self.size + 1, self.y * self.size + 1, (self.x + 1) * self.size - 1, (self.y + 1) * self.size - 1
+        return self.x * self.size, self.y * self.size, (self.x + 1) * self.size, (self.y + 1) * self.size
