@@ -18,7 +18,7 @@ max_vertical_num, max_horizontal_num = 15, 20
 window_top, window_right = 600, 800
 window_left, window_bottom = 0, 0
 stage_past_time = 0
-limit_time = 100
+limit_time = 20
 font = None
 pause_time = 0
 backgroundmusic = None
@@ -38,7 +38,7 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
         horizon_count = 0
     line = file.readline()
     if line:
-        now_stage_num += 1
+        now_stage_num += 0
     file.close()
 
 
