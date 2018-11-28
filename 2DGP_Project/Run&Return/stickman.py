@@ -138,12 +138,12 @@ class Air:
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
-
+        if(stickman.ypos - stickman.size < -stickman.size ):
+            stickman.add_event(DIE)
         if not (stickman.x_crash):
             stickman.xpos += stickman.xspeed * game_framework.frame_time
             stickman.run_distance += abs(stickman.xspeed * game_framework.frame_time)
         stickman.xpos = clamp(0 + stickman.size//2, stickman.xpos, window_right - stickman.size//2)
-        stickman.ypos = clamp(0 + stickman.size, stickman.ypos, window_top - stickman.size)
 
 
     @staticmethod
