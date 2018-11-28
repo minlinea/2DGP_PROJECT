@@ -80,7 +80,7 @@ class Ground:
 
     @staticmethod
     def do(stickman):
-        stickman.frame += (FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % STICKMAN_FRAME
+        #stickman.frame += (FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % STICKMAN_FRAME
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
@@ -120,7 +120,7 @@ class Air:
                 stickman.xspeed += RUN_SPEED_PPS
             stickman.direction = left
         elif event == INSTANT_DOWN:
-            stickman.yspeed = 0
+            stickman.yspeed = -jump_momentum
         elif event == FALL:
             pass
         stickman.x_crash = False
@@ -134,7 +134,7 @@ class Air:
 
     @staticmethod
     def do(stickman):
-        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % STICKMAN_FRAME
+        #stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % STICKMAN_FRAME
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
