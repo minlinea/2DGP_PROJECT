@@ -41,7 +41,7 @@ def update():
     elif(choose_menu_pivot_num == resume):
         choose_menu.left = 614 * 1
     elif (choose_menu_pivot_num == exit):
-        choose_menu.left = 614 * 2
+        choose_menu.left = 614 * 3
 
 
 def draw():

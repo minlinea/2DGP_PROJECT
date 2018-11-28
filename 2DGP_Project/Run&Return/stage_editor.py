@@ -126,15 +126,16 @@ def event_KEYDOWN(key):         # 키보드 처리
     elif key == SDLK_8:  # 오른쪽 4번째줄 타일 셋
         tile_choose_num = 7
     elif key == SDLK_9:  # 현재 그려진 타일 저장
-        save_stage()
+        save_stage_next_level()
+    #elif key == SDLK_x:
+        #save_stage_same_level()
     elif key == SDLK_0:  # save_stage.txt에 저장된 타일 로드
         load_stage()
     elif key == SDLK_r:  # 모든 타일 빈타일로 초기화
         clear_stage()
     tile_choose.x, tile_choose.y = tile_choose_place[tile_choose_num][0], tile_choose_place[tile_choose_num][1]
 
-
-def save_stage():           # 현재까지 그린 정보 저장
+def save_stage_next_level():           # 현재까지 그린 정보 저장
     global tile, save_count
     if(save_count>0):
         file = open("save_stage.txt",'a')
