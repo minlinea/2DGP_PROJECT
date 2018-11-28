@@ -106,7 +106,7 @@ def update():
             stickman.xpos = window_right - (stickman.size // 2)
     else:
         if (stickman.opacify == 0):
-            game_framework.change_state(title_state)
+            game_framework.change_state(score_state)
 
 def draw():
     clear_canvas()

@@ -4,6 +4,7 @@ import title_state
 import pause_state
 import stage_return
 import random
+import score_state
 
 from pico2d import *
 from stickman import Stickman
@@ -103,7 +104,7 @@ def update():
             stickman.xpos = window_left + (stickman.size // 2 + 1)
     else:
         if(stickman.opacify == 0):
-            game_framework.change_state(title_state)
+            game_framework.change_state(score_state)
 
 
 
