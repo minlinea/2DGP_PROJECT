@@ -110,8 +110,9 @@ def update():
                 stickman.external_add_event("DIE")
                 pass_score_state = OVER_LIMIT_TIME
             else:
-                game_framework.change_state(score_state)
                 pass_score_state = CLEAR
+                game_framework.change_state(score_state)
+
         elif (stickman.xpos <= window_left + (stickman.size // 2)):
             load_stage()
             stickman.xpos = window_right - (stickman.size // 2)

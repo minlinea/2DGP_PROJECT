@@ -37,8 +37,12 @@ def enter():
     pass_run_stage = load_font('ENCR10B.TTF', 32)
     pass_return_stage = load_font('ENCR10B.TTF', 32)
 
-    scoreboard = Image(window_right // 2, window_top // 2, 0, 0, 800, 600,
-                       'resource\\score_state\\score_board.png')
+    if(stage_return.pass_score_state == CLEAR):
+        scoreboard = Image(window_right // 2, window_top // 2, 0, 0, 800, 600,
+                       'resource\\score_state\\clear_score_board.png')
+    else:
+        scoreboard = Image(window_right // 2, window_top // 2, 0, 0, 800, 600,
+                           'resource\\score_state\\score_board.png')
     game_world.add_object(scoreboard, 0)
 
     return_main_menu = Image(window_right/2 - 200, window_top / 6, 270 * 0, 0, 270 - 1, 86,
