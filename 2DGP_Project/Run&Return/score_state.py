@@ -82,7 +82,7 @@ def draw():
     for game_object in game_world.all_objects():
         game_object.draw()
 
-    pass_run_stage_num = stage_run.now_stage_num 
+    pass_run_stage_num = stage_run.now_stage_num
     pass_run_stage.draw(window_right // 5, window_top * 4 // 5, 'pass_run_stage : [%2.0f]' %pass_run_stage_num, (255, 255, 255))
 
     pass_return_stage_num = stage_return.now_stage_num - stage_run.now_stage_num

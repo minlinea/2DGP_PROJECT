@@ -86,10 +86,10 @@ def update():
     for i in range(center_x_left, center_x_right + 1, 1):
         for j in range (center_y_bottom, center_y_top + 1, 1):
             if (collide_normal_tile(stickman, tile[j][i])):
-                if (tile[j][i].type >= 4):
-                    if (collide_thorn(stickman, tile[j][i], tile[j][i].type)):
-                        stickman.crash_tile(tile[j][i].type, j, i)
-                else:
+                #if (tile[j][i].type >= 4):
+                    #if (collide_thorn(stickman, tile[j][i], tile[j][i].type)):
+                        #stickman.crash_tile(tile[j][i].type, j, i)
+                if tile[j][i].type >= 1:
                     stickman.crash_tile(tile[j][i].type, j, i)
                     collide_check = True
     if not collide_check:   #stickman.crash_tile이 안불렸다면
