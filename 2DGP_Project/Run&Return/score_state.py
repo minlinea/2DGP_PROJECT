@@ -40,7 +40,7 @@ def enter():
     scoreboard = Image(window_right // 2, window_top // 2, 0, 0, 800, 600,
                        'resource\\score_state\\score_board.png')
     game_world.add_object(scoreboard, 0)
-    
+
     return_main_menu = Image(window_right/2 - 200, window_top / 6, 270 * 0, 0, 270 - 1, 86,
                         'resource\\score_state\\return_main_menu.png')
     game_world.add_object(return_main_menu, 1)

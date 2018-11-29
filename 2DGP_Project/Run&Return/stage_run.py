@@ -136,7 +136,8 @@ def handle_events():
         if (stickman.opacify >= 1):
             if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.push_state(pause_state)
-
+            elif event.type == SDL_KEYDOWN and event.key == SDLK_z:
+                game_framework.change_state(stage_return)
             else:
                 stickman.handle_event(event)
 
