@@ -24,6 +24,7 @@ font = None
 pause_time = 0
 backgroundmusic = None
 
+
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
     file = open("save_stage.txt", 'r')

@@ -24,18 +24,23 @@ choose_menu_pivot_num = 0
 none_select, return_main, exit = range(3)
 choose_menu_type = {none_select : 0, return_main : 1, exit : 2}
 
+DIE, OVER_LIMIT_TIME, CLEAR, NONE_EVENT  = range(4)
+end_judgement = {DIE : 0, OVER_LIMIT_TIME : 1, CLEAR : 2, NONE_EVENT : 3}
+
 def enter():
     global scoreboard, score, pass_run_stage, pass_return_stage, return_main_menu, game_exit
+
 
     game_world.objects = [[], []]
 
     score = load_font('ENCR10B.TTF', 32)
     pass_run_stage = load_font('ENCR10B.TTF', 32)
     pass_return_stage = load_font('ENCR10B.TTF', 32)
-    scoreboard = Image(window_right // 2, window_top // 2, 0,0, 800, 600,
-                        'resource\\score_state\\score_board.png')
-    game_world.add_object(scoreboard,0)
 
+    scoreboard = Image(window_right // 2, window_top // 2, 0, 0, 800, 600,
+                       'resource\\score_state\\score_board.png')
+    game_world.add_object(scoreboard, 0)
+    
     return_main_menu = Image(window_right/2 - 200, window_top / 6, 270 * 0, 0, 270 - 1, 86,
                         'resource\\score_state\\return_main_menu.png')
     game_world.add_object(return_main_menu, 1)

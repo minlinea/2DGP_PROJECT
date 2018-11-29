@@ -23,6 +23,10 @@ backgroundmusic = None
 font = None
 pause_time = 0.0
 
+DIE, OVER_LIMIT_TIME, CLEAR, NONE_EVENT  = range(4)
+end_judgement = {DIE : 0, OVER_LIMIT_TIME : 1, CLEAR : 2, NONE_EVENT : 3}
+pass_score_state = DIE
+
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
     file = open("save_stage.txt", 'r')
@@ -79,6 +83,7 @@ def resume():
 
 
 def update():
+    global pass_score_state
 
     for game_object in game_world.all_objects():
         game_object.update()
@@ -95,6 +100,7 @@ def update():
                 if (tile[j][i].type != 0):
                     stickman.crash_tile(tile[j][i].type, j, i)
                     collide_check = True
+                    pass_score_state = DIE
     if not collide_check:   #stickman.crash_tile이 안불렸다면
         stickman.crash = False  #stickman.crash 초기화
 
@@ -102,15 +108,17 @@ def update():
         if (limit_time - (get_time() - stage_past_time - pause_time) <= 0):
             if(now_stage_num + 1 - 2 * stage_run.now_stage_num < 0):
                 stickman.external_add_event("DIE")
+                pass_score_state = OVER_LIMIT_TIME
             else:
                 game_framework.change_state(score_state)
-
+                pass_score_state = CLEAR
         elif (stickman.xpos <= window_left + (stickman.size // 2)):
             load_stage()
             stickman.xpos = window_right - (stickman.size // 2)
     else:
         if (stickman.opacify == 0):
             game_framework.change_state(score_state)
+
 
 def draw():
     clear_canvas()
