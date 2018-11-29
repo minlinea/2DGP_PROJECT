@@ -262,6 +262,10 @@ class Stickman:
     def get_bb(self):
         return self.xpos - self.size//2, self.ypos - self.size, self.xpos + self.size//2, self.ypos+self.size
 
+    def external_add_event(self, event):
+        if(event == "DIE"):
+            self.add_event(DIE)
+
     def add_event(self, event):
         self.event_que.insert(0, event)
 
