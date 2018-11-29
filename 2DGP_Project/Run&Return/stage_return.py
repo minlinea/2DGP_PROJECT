@@ -38,7 +38,7 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
         horizon_count = 0
     line = file.readline()
     if line:
-        now_stage_num += 0
+        now_stage_num += 1
     file.close()
 
 
@@ -50,7 +50,7 @@ def enter():
     stage_past_time = get_time()
 
     pause_time = stage_run.pause_time
-    now_stage_num = stage_run.now_stage_num
+    now_stage_num = stage_run.now_stage_num-1
     stickman = stage_run.stickman
     stickman.image = load_image('resource\\character\\stage_return_animation_sheet.png')
 
@@ -100,8 +100,10 @@ def update():
 
     if (stickman.opacify >= 1):
         if (limit_time - (get_time() - stage_past_time - pause_time) <= 0):
-            stickman.external_add_event("DIE")
-            #game_framework.change_state(score_state)
+            if(now_stage_num + 1 - 2 * stage_run.now_stage_num < 0):
+                stickman.external_add_event("DIE")
+            else:
+                game_framework.change_state(score_state)
 
         elif (stickman.xpos <= window_left + (stickman.size // 2)):
             load_stage()

@@ -39,7 +39,7 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
         horizon_count = 0
     line = file.readline()
     if line:
-        now_stage_num += 0
+        now_stage_num += 1
     file.close()
 
 
