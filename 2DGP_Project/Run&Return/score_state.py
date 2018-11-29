@@ -18,6 +18,7 @@ pass_run_stage = None
 pass_return_stage = None
 return_main_menu = None
 game_exit = None
+end_judge_font = None
 
 choose_menu_pivot_num = 0
 
@@ -28,7 +29,7 @@ DIE, OVER_LIMIT_TIME, CLEAR, NONE_EVENT  = range(4)
 end_judgement = {DIE : 0, OVER_LIMIT_TIME : 1, CLEAR : 2, NONE_EVENT : 3}
 
 def enter():
-    global scoreboard, score, pass_run_stage, pass_return_stage, return_main_menu, game_exit
+    global scoreboard, score, pass_run_stage, pass_return_stage, return_main_menu, game_exit, end_judge_font
 
 
     game_world.objects = [[], []]
@@ -36,6 +37,7 @@ def enter():
     score = load_font('ENCR10B.TTF', 32)
     pass_run_stage = load_font('ENCR10B.TTF', 32)
     pass_return_stage = load_font('ENCR10B.TTF', 32)
+    end_judge_font = load_font('ENCR10B.TTF', 32)
 
     if(stage_return.pass_score_state == CLEAR):
         scoreboard = Image(window_right // 2, window_top // 2, 0, 0, 800, 600,
@@ -91,6 +93,7 @@ def draw():
     for game_object in game_world.all_objects():
         game_object.draw()
 
+    end_judge_font.draw(window_right // 5, window_top * 4 // 5 + 50, 'Winner Winner, Chiken Dinner', (255, 0, 255))
     pass_run_stage_num = stage_run.now_stage_num
     pass_run_stage.draw(window_right // 5, window_top * 4 // 5, 'pass_run_stage : [%2.0f]' %pass_run_stage_num, (255, 255, 255))
 
