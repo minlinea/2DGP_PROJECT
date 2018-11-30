@@ -20,10 +20,10 @@ window_top, window_right = 600, 800
 window_left, window_bottom = 0, 0
 stage_past_time = 0
 limit_time = 5
+wait_time = 0
 font = None
 pause_time = 0
 backgroundmusic = None
-
 
 def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하여 정보 저장
     global tile, now_stage_num
@@ -47,7 +47,7 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 def enter():
     global now_stage_num, stage_past_time, font
     font = load_font('ENCR10B.TTF', 32)
-    stage_past_time = get_time()
+    stage_past_time = get_time() - (pause_time + stage_return.pause_time)
     now_stage_num = 0
 
     global tile

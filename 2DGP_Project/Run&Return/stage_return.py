@@ -51,10 +51,11 @@ def enter():
 
     font = load_font('ENCR10B.TTF', 32)
 
-    stage_past_time = get_time()
-
+    stage_past_time = get_time() - stage_run.pause_time
     pause_time = stage_run.pause_time
+
     now_stage_num = stage_run.now_stage_num-1
+
     stickman = stage_run.stickman
     stickman.image = load_image('resource\\character\\stage_return_animation_sheet.png')
 

@@ -52,13 +52,7 @@ def handle_events():
                 game_framework.change_state(stage_run)
             elif (choose_menu_pivot_num == exit):
                 game_framework.quit()
-
-        else:
-            if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
-                game_framework.quit()
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_p):
-                game_framework.change_state(stage_editor)
-
+        elif event.type == SDL_MOUSEMOTION:
             mouse_pos = event.x, window_to_pico_coordinate_system(event.y)
             game_start_pos = game_start.x, game_start.y
             exit_image_pos = game_exit.x, game_exit.y
@@ -69,6 +63,13 @@ def handle_events():
                 choose_menu_pivot_num = exit
             else:
                 choose_menu_pivot_num = none_select
+        else:
+            if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
+                game_framework.quit()
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_p):
+                game_framework.change_state(stage_editor)
+
+
 
 def draw():
     clear_canvas()
