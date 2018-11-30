@@ -47,7 +47,7 @@ def load_stage():  # 'save_stage'에 저장되어 있는 타일 파일 로드하
 def enter():
     global now_stage_num, stage_past_time, font
     font = load_font('ENCR10B.TTF', 32)
-    stage_past_time = get_time() - (pause_time + stage_return.pause_time)
+    stage_past_time = get_time() - pause_time
     now_stage_num = 0
 
     global tile
