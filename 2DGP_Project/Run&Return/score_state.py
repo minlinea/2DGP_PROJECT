@@ -93,7 +93,12 @@ def draw():
     for game_object in game_world.all_objects():
         game_object.draw()
 
-    end_judge_font.draw(window_right // 5, window_top * 4 // 5 + 50, 'Winner Winner, Chiken Dinner', (255, 0, 255))
+    if (stage_return.pass_score_state == CLEAR):
+        end_judge_font.draw(window_right // 5, window_top * 4 // 5 + 50, 'Winner Winner, Chiken Dinner', (255, 0, 255))
+    elif (stage_return.pass_score_state == OVER_LIMIT_TIME):
+        end_judge_font.draw(window_right // 3, window_top * 4 // 5 + 50, 'TIME      OUT', (255, 255, 255))
+    elif (stage_return.pass_score_state == DIE):
+        end_judge_font.draw(window_right // 3, window_top * 4 // 5 + 50, 'YOU      DIED', (255, 255, 255))
     pass_run_stage_num = stage_run.now_stage_num
     pass_run_stage.draw(window_right // 5, window_top * 4 // 5, 'pass_run_stage : [%2.0f]' %pass_run_stage_num, (255, 255, 255))
 
