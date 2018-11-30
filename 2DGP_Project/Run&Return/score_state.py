@@ -70,6 +70,7 @@ def handle_events():
             mouse_pos = event.x, window_to_pico_coordinate_system(event.y)
             return_image_pos = return_main_menu.x, return_main_menu.y
             exit_image_pos = game_exit.x, game_exit.y
+
             if(collide(return_image_pos, mouse_pos)):
                 choose_menu_pivot_num = return_main
             elif (collide(exit_image_pos, mouse_pos)):
