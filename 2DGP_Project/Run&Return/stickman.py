@@ -7,7 +7,8 @@ from music import Effect
 # Boy Run Speed
 # fill expressions correctly
 PIXEL_PER_METER = (10.0 / 0.3) # 10pixel 30cm
-RUN_SPEED_KMPH = 20.0 #km / hour
+RUN_SPEED_KMPH = 30.0 #km / hour
+JUMP_SPEED_KMPH = 20.0
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -21,7 +22,7 @@ tile_size = 40
 
 window_top, window_right = 600, 800
 
-jump_momentum = RUN_SPEED_KMPH * 20
+jump_momentum = JUMP_SPEED_KMPH * 20
 jump_momentum_reduction = 3
 
 stickman = None
@@ -81,11 +82,11 @@ class Ground:
     def do(stickman):
         stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
 
-        print(stickman.frame)
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
 
         if not (stickman.x_crash):
+            stickman.xspeed = clamp(-RUN_SPEED_PPS, stickman.xspeed, RUN_SPEED_PPS)
             stickman.xpos += stickman.xspeed * game_framework.frame_time
             stickman.run_distance += abs(stickman.xspeed * game_framework.frame_time)
         stickman.xpos = clamp(0 + stickman.size//2, stickman.xpos, window_right - stickman.size//2)
@@ -142,6 +143,7 @@ class Air:
         if(stickman.ypos - stickman.size < -stickman.size ):
             stickman.add_event(DIE)
         if not (stickman.x_crash):
+            stickman.xspeed = clamp(-RUN_SPEED_PPS, stickman.xspeed, RUN_SPEED_PPS)
             stickman.xpos += stickman.xspeed * game_framework.frame_time
             stickman.run_distance += abs(stickman.xspeed * game_framework.frame_time)
         stickman.xpos = clamp(0 + stickman.size//2, stickman.xpos, window_right - stickman.size//2)
