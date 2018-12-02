@@ -14,10 +14,9 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 # Boy Action Speed
 # fill expressions correctly
-TIME_PER_ACTION = 1
+TIME_PER_ACTION = 1.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
-STICKMAN_FRAME = 8
 tile_size = 40
 
 window_top, window_right = 600, 800
@@ -80,8 +79,9 @@ class Ground:
 
     @staticmethod
     def do(stickman):
-        #stickman.frame += (FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % STICKMAN_FRAME
+        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
 
+        print(stickman.frame)
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
 
@@ -90,9 +90,10 @@ class Ground:
             stickman.run_distance += abs(stickman.xspeed * game_framework.frame_time)
         stickman.xpos = clamp(0 + stickman.size//2, stickman.xpos, window_right - stickman.size//2)
 
+
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2, stickman.size, stickman.size * 2, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2 + stickman.direction, stickman.size, stickman.size * 2, stickman.xpos,
                                   stickman.ypos)
 
 
@@ -134,7 +135,7 @@ class Air:
 
     @staticmethod
     def do(stickman):
-        #stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % STICKMAN_FRAME
+        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
@@ -148,7 +149,7 @@ class Air:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2,stickman.size, stickman.size * 2, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2 + 1,stickman.size, stickman.size * 2, stickman.xpos,
                                   stickman.ypos)
 
 
@@ -192,7 +193,7 @@ next_state_table = {
 
 class Stickman:
     def __init__(self):
-        self.xpos, self.ypos = 150, 280
+        self.xpos, self.ypos = 60, 280
         self.frame = 0
         self.image = load_image('resource\\character\\stage_run_animation_sheet.png')
         self.direction = right
@@ -200,7 +201,7 @@ class Stickman:
         self.opacify = 1.0
         self.opacify_variation = 1.0
         self.run_distance = 0.0
-        self.size = 39
+        self.size = 40
         self.x_crash = False
         self.jump_lock = False
         self.event_que = []

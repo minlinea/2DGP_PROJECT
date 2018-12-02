@@ -98,7 +98,7 @@ def run(start_state):
         stack[-1].draw()
         # fill here
         frame_time = time.time() - current_time
-        frame_rate = 1.0 / frame_time
+        #frame_rate = 1.0 / frame_time
         current_time += frame_time
 
     while (len(stack) > 0):
