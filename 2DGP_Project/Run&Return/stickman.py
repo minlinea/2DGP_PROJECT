@@ -80,7 +80,7 @@ class Ground:
 
     @staticmethod
     def do(stickman):
-        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
+        #stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
@@ -136,7 +136,7 @@ class Air:
 
     @staticmethod
     def do(stickman):
-        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
+        #stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
@@ -196,7 +196,7 @@ next_state_table = {
 class Stickman:
     def __init__(self):
         self.xpos, self.ypos = 60, 280
-        self.frame = 0
+        self.frame = 0.8
         self.image = load_image('resource\\character\\stage_run_animation_sheet.png')
         self.direction = right
         self.xspeed, self.yspeed = 0, 0
@@ -261,6 +261,7 @@ class Stickman:
 
     def draw(self):
         self.cur_state.draw(self)
+        draw_rectangle(*self.get_bb())
 
     def get_bb(self):
         return self.xpos - self.size//2, self.ypos - self.size, self.xpos + self.size//2, self.ypos+self.size
