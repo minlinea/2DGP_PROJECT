@@ -103,7 +103,10 @@ def draw():
     pass_run_stage_num = stage_run.now_stage_num
     pass_run_stage.draw(window_right // 5, window_top * 4 // 5, 'pass_run_stage : [%2.0f]' %pass_run_stage_num, (255, 255, 255))
 
-    pass_return_stage_num = stage_return.now_stage_num - stage_run.now_stage_num + 1
+    if(stage_return.now_stage_num == 0):
+        pass_return_stage_num = 0
+    else:
+        pass_return_stage_num = stage_return.now_stage_num - stage_run.now_stage_num + 1
     pass_return_stage.draw(window_right // 5, window_top * 3 // 5, 'pass_return_stage : [%2.0f]' % pass_return_stage_num, (255, 255, 255))
 
     if(stage_return.stickman != None):
