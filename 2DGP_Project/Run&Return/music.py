@@ -24,7 +24,7 @@ class Effect:
             self.effect = load_wav('sound\\character\\death.wav')
         if(type == 'jump'):
             self.effect = load_wav('sound\\character\\jump.wav')
-        self.effect.set_volume(64)
+        self.effect.set_volume(96)
 
     def play(self):
         self.effect.play()
