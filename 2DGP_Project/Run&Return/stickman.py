@@ -15,9 +15,9 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 # Boy Action Speed
 # fill expressions correctly
-TIME_PER_ACTION = 1.5
+TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-FRAMES_PER_ACTION = 8
+FRAMES_PER_ACTION = 7
 tile_size = 40
 
 window_top, window_right = 600, 800
@@ -80,7 +80,7 @@ class Ground:
 
     @staticmethod
     def do(stickman):
-        #stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
+        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
 
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
@@ -94,7 +94,7 @@ class Ground:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2 + stickman.direction, stickman.size, stickman.size * 2, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame) * 100, stickman.direction * stickman.size * 2 + stickman.direction, stickman.size, stickman.size * 2, stickman.xpos,
                                   stickman.ypos)
 
 
@@ -136,8 +136,7 @@ class Air:
 
     @staticmethod
     def do(stickman):
-        #stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
-
+        stickman.frame = (stickman.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
         stickman.calculation_yspeed()
         stickman.ypos += stickman.yspeed * game_framework.frame_time
         if(stickman.ypos - stickman.size < -stickman.size ):
@@ -151,7 +150,7 @@ class Air:
 
     @staticmethod
     def draw(stickman):
-        stickman.image.clip_draw(int(stickman.frame * tile_size), stickman.direction * stickman.size * 2 + 1,stickman.size, stickman.size * 2, stickman.xpos,
+        stickman.image.clip_draw(int(stickman.frame) * 100, stickman.direction * stickman.size * 2 + 1,stickman.size, stickman.size * 2, stickman.xpos,
                                   stickman.ypos)
 
 
